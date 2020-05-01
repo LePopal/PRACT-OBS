@@ -2,6 +2,8 @@
 
 The **Popal's Rekordbox Analysis and Clean up Tool for OBS** is a program designed to expose the current track or song played in Pioneer DJ software Rekordbox to OBS.
 
+PRACT OBS can be used with Rekordbox in Performance Mode or in Export Mode (via DJ Link).
+
 ## Author
 
 Axel Pironio ([popal.fr](http://popal.fr)).
@@ -77,3 +79,5 @@ PRACT OBS is in active development. Please feel free to open an issue should you
 
 ## License
 [Apache 2.0](https://choosealicense.com/licenses/apache-2.0/)
+
+Rekordbox and Pioneer DJ are trademarks from AlphaTheta Corporation. The author is not affiliated with AlphaTheta Corporation.
