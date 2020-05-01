@@ -1,4 +1,4 @@
-# PRACT OBS
+﻿# PRACT OBS
 
 The **Popal's Rekordbox Analysis and Clean up Tool for OBS** is a program designed to expose the current track or song played in Pioneer DJ software Rekordbox to OBS.
 

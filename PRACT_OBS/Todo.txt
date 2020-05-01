@@ -1,0 +1,3 @@
+﻿Todo
+
+Routines de vérification de l'espace disque et des droits d'écriture dans l'output folder
