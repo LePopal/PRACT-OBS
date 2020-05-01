@@ -49,7 +49,7 @@ namespace PRACT_OBS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("c:\\temp\\OBS")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string OutputFolder {
             get {
                 return ((string)(this["OutputFolder"]));
@@ -85,7 +85,7 @@ namespace PRACT_OBS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        [global::System.Configuration.DefaultSettingValueAttribute("60")]
         public int OnScreenDuration {
             get {
                 return ((int)(this["OnScreenDuration"]));

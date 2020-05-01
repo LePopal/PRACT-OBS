@@ -58,45 +58,47 @@ namespace PRACT_OBS
             while (!IsDisposed && !stopExport)
             {
                 LastTrack lt = h.GetLastTrack();
-                OBSExport.ExportLastTrack(lt);
-                txtArtist.Invoke((Action)delegate
+                if (lt != null)
                 {
-                    txtArtist.Text = lt.Artist;
-                });
-                txtTitle.Invoke((Action)delegate
-                {
-                    txtTitle.Text = lt.Title;
-                });
-
-                lnkFilename.Invoke((Action)delegate
-                {
-                    lnkFilename.Text = lt.FolderPath;
-                });
-
-
-                picArtwork.Invoke((Action)delegate
-                {
-                    if (!string.IsNullOrEmpty(lt.ImagePath))
+                    OBSExport.ExportLastTrack(lt);
+                    txtArtist.Invoke((Action)delegate
                     {
-                        picArtwork.Image = Image.FromFile(Paths.AnalysisDataRootPath + lt.ImagePath);
-                    }
-                    else
+                        txtArtist.Text = lt.Artist;
+                    });
+                    txtTitle.Invoke((Action)delegate
                     {
-                        picArtwork.Image = null;
+                        txtTitle.Text = lt.Title;
+                    });
+
+                    lnkFilename.Invoke((Action)delegate
+                    {
+                        lnkFilename.Text = lt.FolderPath;
+                    });
+
+
+                    picArtwork.Invoke((Action)delegate
+                    {
+                        if (!string.IsNullOrEmpty(lt.ImagePath))
+                        {
+                            picArtwork.Image = Image.FromFile(Paths.AnalysisDataRootPath + lt.ImagePath);
+                        }
+                        else
+                        {
+                            picArtwork.Image = null;
+                        }
                     }
+                    );
+
+                    txtHistory.Invoke((Action)delegate
+                    {
+                        txtHistory.Text = lt.created_at.ToString();
+                    });
+
+                    txtLastExport.Invoke((Action)delegate
+                    {
+                        txtLastExport.Text = OBSExport.PreviousUpdate.ToString();
+                    });
                 }
-                );
-
-                txtHistory.Invoke((Action)delegate
-                {
-                    txtHistory.Text = lt.created_at.ToString();
-                });
-
-                txtLastExport.Invoke((Action)delegate
-                {
-                    txtLastExport.Text = OBSExport.PreviousUpdate.ToString();
-                });
-
                 Thread.Sleep(ProgramSettings.Timer * 1000);
             }
 

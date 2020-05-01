@@ -87,9 +87,9 @@
             // 
             this.btnStart.Image = ((System.Drawing.Image)(resources.GetObject("btnStart.Image")));
             this.btnStart.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStart.Location = new System.Drawing.Point(202, 3);
+            this.btnStart.Location = new System.Drawing.Point(179, 3);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(112, 55);
+            this.btnStart.Size = new System.Drawing.Size(160, 55);
             this.btnStart.TabIndex = 1;
             this.btnStart.Text = "Start";
             this.btnStart.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -363,9 +363,9 @@
             this.btnStop.Enabled = false;
             this.btnStop.Image = ((System.Drawing.Image)(resources.GetObject("btnStop.Image")));
             this.btnStop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStop.Location = new System.Drawing.Point(479, 3);
+            this.btnStop.Location = new System.Drawing.Point(458, 3);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(112, 55);
+            this.btnStop.Size = new System.Drawing.Size(157, 55);
             this.btnStop.TabIndex = 3;
             this.btnStop.Text = "Pause";
             this.btnStop.TextAlign = System.Drawing.ContentAlignment.MiddleRight;

@@ -2,6 +2,10 @@
 
 The **Popal's Rekordbox Analysis and Clean up Tool for OBS** is a program designed to expose the current track or song played in Pioneer DJ software Rekordbox to OBS.
 
+## Author
+
+Axel Pironio ([popal.fr](http://popal.fr)).
+
 ## Disclaimer
 
 BACKUP YOUR LIBRARY !!!
@@ -35,7 +39,8 @@ Any version prior to Rekordbox 6 (eg 5.x) is NOT supported and there's no plans 
 
 ## Installation
 
-1. Run the installer or unzip the portable version to your desired place on your computer running Rekordbox.
+1. Make sure you have installed the [latest .Net Core 3.1 Desktop runtime](https://dotnet.microsoft.com/download/dotnet-core/3.1)
+2. Run the installer or unzip the portable version to your desired place on your computer running Rekordbox.
 2. Run the program
 2. Go the Tools / Options menu and provide the **Encryption Key for the Rekordbox database** and the Output Folder
 

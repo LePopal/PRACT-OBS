@@ -9,7 +9,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="OutputFolder" Type="System.String" Scope="User">
-      <Value Profile="(Default)">c:\temp\OBS</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="Timer" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">10</Value>
@@ -18,7 +18,7 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="OnScreenDuration" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">30</Value>
+      <Value Profile="(Default)">60</Value>
     </Setting>
   </Settings>
 </SettingsFile>
