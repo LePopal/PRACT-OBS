@@ -37,6 +37,19 @@ namespace PRACT_OBS.Classes.Helpers
             }
         }
 
+        /// <summary>
+        /// This folder is deduced from the lang settings
+        /// The binaries folder is the parent folder of the file containing the language settings
+        /// </summary>
+        public static string RekordboxBinariesFolder
+        {
+            get
+            {
+                FileInfo fi = new FileInfo(Rb6Options.options.LangPath);
+                return fi.Directory.Parent.FullName;
+            }
+        }
+
         public static string DbPath
         {
             get

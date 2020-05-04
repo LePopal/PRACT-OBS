@@ -31,7 +31,9 @@ namespace PRACT_OBS
                 .Append("SettingsRootPath=")
                 .AppendLine(Paths.SettingsRootPath)
                 .Append("RekordboxRootPath=")
-                .AppendLine(Paths.RekordboxRoot());
+                .AppendLine(Paths.RekordboxRoot())
+                .Append("RekordboxBinariesFolder=")
+                .AppendLine(Paths.RekordboxBinariesFolder);
             txtDebugInfo.Text = sb.ToString();
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
