@@ -102,6 +102,8 @@ namespace PRACT_OBS
                 Thread.Sleep(ProgramSettings.Timer * 1000);
             }
 
+            // Allow the process to be restarted now it's been stopped
+            stopExport = false;
         }
 
         private void button2_Click(object sender, EventArgs e)

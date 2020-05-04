@@ -107,6 +107,16 @@ namespace PRACT_OBS.Classes
             }
         }
 
+        public static void Reset()
+        {
+            PreviousArtist = string.Empty;
+            PreviousTitle = string.Empty;
+            PreviousUpdate = DateTime.MinValue;
+            PreviousArtwork = string.Empty;
+            IsArtistFileEmpty = false;
+            IsTitleFileEmpty = false;
+            IsArtworkFileEmpty = false;
+        }
         /// <summary>
         /// Gets the MD5 checksum of a given file. Usefull to check if the file is the same than another one
         /// </summary>

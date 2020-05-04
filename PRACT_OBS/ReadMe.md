@@ -31,7 +31,7 @@ PRACT OBS and its developers won't be responsible for any loss of information or
 
 ## Requirements
 
-PRACT OBS is designed to run on Windows 10 and Rekordbox 6.x.
+PRACT OBS is designed to run on Windows 10 with the .Net Core 3.1 Desktop Runtime and Rekordbox 6.x.
 
 As of April 2020, the following Rekordbox versions are supported:
 * Rekordbox 6.0.0
