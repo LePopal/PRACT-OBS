@@ -9,11 +9,11 @@
     <ApplicationIcon>app.ico</ApplicationIcon>
     <Description>PRACT OBS is an add-on Open Source program (License TBD) for Rekordbox 6 primarly designed to help you export the current track playing to a streaming software like OBS.</Description>
     <Authors>Popal</Authors>
-    <PackageProjectUrl>https://Facebook.com/LePopal</PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/LePopal/PRACT-OBS</PackageProjectUrl>
     <PackageIcon>app.png</PackageIcon>
     <RepositoryUrl>TBD</RepositoryUrl>
-    <AssemblyVersion>0.1.0.0</AssemblyVersion>
-    <FileVersion>0.1.0.0</FileVersion>
+    <AssemblyVersion>0.2.0.0</AssemblyVersion>
+    <FileVersion>0.2.0.0</FileVersion>
     <Product>PRACT OBS</Product>
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
