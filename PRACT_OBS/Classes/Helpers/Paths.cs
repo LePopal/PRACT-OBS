@@ -50,6 +50,14 @@ namespace PRACT_OBS.Classes.Helpers
             }
         }
 
+        public static string AppAsarFilePath
+        {
+            get
+            {
+                return Path.Combine(RekordboxBinariesFolder, @"rekordboxAgent-win32-x64\resources\app.asar");
+            }
+        }
+
         public static string DbPath
         {
             get

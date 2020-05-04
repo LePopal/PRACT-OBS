@@ -33,7 +33,10 @@ namespace PRACT_OBS
                 .Append("RekordboxRootPath=")
                 .AppendLine(Paths.RekordboxRoot())
                 .Append("RekordboxBinariesFolder=")
-                .AppendLine(Paths.RekordboxBinariesFolder);
+                .AppendLine(Paths.RekordboxBinariesFolder)
+                .Append("App.asar=")
+                .AppendLine(Paths.AppAsarFilePath)
+                ;
             txtDebugInfo.Text = sb.ToString();
         }
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
