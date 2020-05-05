@@ -9,6 +9,7 @@ namespace PRACT_OBS.Classes.Data.Rekordbox6OptionsModels
     {
         [JsonPropertyName("db-path")]
         public string DbPath { get; set; }
+        [JsonPropertyName("dp")]
         public string Dp { get; set; }
         public string Port { get; set; }
         [JsonPropertyName("analysis-data-root-path")]

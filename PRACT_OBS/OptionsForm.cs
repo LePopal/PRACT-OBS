@@ -15,10 +15,20 @@ namespace PRACT_OBS
         public OptionsForm()
         {
             InitializeComponent();
-            txtKey.Text = ProgramSettings.Key;
+            chkMine.Checked = ProgramSettings.PassphraseToMine;
+            if (ProgramSettings.PassphraseToMine)
+            {
+                txtKey.Text = ProgramSettings.PASSPHRASE_TO_MINE;
+                txtKey.Enabled = false;
+            }
+            else
+            {
+                txtKey.Text = ProgramSettings.Key;
+            }
             txtOutputFolder.Text = ProgramSettings.OutputFolder;
             txtOnScreenDuration.Text = ProgramSettings.OnScreenDuration.ToString();
             txtPooling.Text = ProgramSettings.Timer.ToString();
+            
         }
 
         private void btnOutputFolder_Click(object sender, EventArgs e)
@@ -30,7 +40,12 @@ namespace PRACT_OBS
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            ProgramSettings.Key = txtKey.Text;
+            ProgramSettings.PassphraseToMine = chkMine.Checked;
+            if (chkMine.Checked)
+                ProgramSettings.Key = ProgramSettings.PASSPHRASE_TO_MINE;
+            else
+                ProgramSettings.Key = txtKey.Text;
+
             if (!CheckKey())
                 Messages.WarningMessage("This key doesn't seem to be valid!");
 
@@ -110,6 +125,11 @@ namespace PRACT_OBS
         private void OptionsForm_KeyDown(object sender, KeyEventArgs e)
         {
 
+        }
+
+        private void chkMine_CheckedChanged(object sender, EventArgs e)
+        {
+            txtKey.Enabled = !chkMine.Checked;
         }
     }
 }

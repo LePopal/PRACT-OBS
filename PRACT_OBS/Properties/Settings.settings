@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Key" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">PASSPHRASE_TO_MINE</Value>
     </Setting>
     <Setting Name="Sboub" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
@@ -19,6 +19,9 @@
     </Setting>
     <Setting Name="OnScreenDuration" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">60</Value>
+    </Setting>
+    <Setting Name="PassphraseToMine" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

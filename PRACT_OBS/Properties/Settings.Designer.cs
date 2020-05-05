@@ -25,7 +25,7 @@ namespace PRACT_OBS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("PASSPHRASE_TO_MINE")]
         public string Key {
             get {
                 return ((string)(this["Key"]));
@@ -92,6 +92,18 @@ namespace PRACT_OBS.Properties {
             }
             set {
                 this["OnScreenDuration"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool PassphraseToMine {
+            get {
+                return ((bool)(this["PassphraseToMine"]));
+            }
+            set {
+                this["PassphraseToMine"] = value;
             }
         }
     }

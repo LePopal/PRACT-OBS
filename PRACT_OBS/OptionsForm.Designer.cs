@@ -40,6 +40,7 @@
             this.txtOnScreenDuration = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.txtPooling = new System.Windows.Forms.TextBox();
+            this.chkMine = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -56,7 +57,7 @@
             // 
             this.txtKey.Location = new System.Drawing.Point(218, 13);
             this.txtKey.Name = "txtKey";
-            this.txtKey.Size = new System.Drawing.Size(990, 31);
+            this.txtKey.Size = new System.Drawing.Size(816, 31);
             this.txtKey.TabIndex = 1;
             this.txtKey.UseSystemPasswordChar = true;
             // 
@@ -141,6 +142,18 @@
             this.txtPooling.Size = new System.Drawing.Size(990, 31);
             this.txtPooling.TabIndex = 1;
             // 
+            // chkMine
+            // 
+            this.chkMine.AutoSize = true;
+            this.chkMine.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.chkMine.Location = new System.Drawing.Point(1040, 13);
+            this.chkMine.Name = "chkMine";
+            this.chkMine.Size = new System.Drawing.Size(179, 29);
+            this.chkMine.TabIndex = 5;
+            this.chkMine.Text = "Mine for the key";
+            this.chkMine.UseVisualStyleBackColor = true;
+            this.chkMine.CheckedChanged += new System.EventHandler(this.chkMine_CheckedChanged);
+            // 
             // OptionsForm
             // 
             this.AcceptButton = this.btnOK;
@@ -148,6 +161,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1220, 222);
+            this.Controls.Add(this.chkMine);
             this.Controls.Add(this.txtPooling);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.txtOnScreenDuration);
@@ -183,5 +197,6 @@
         private System.Windows.Forms.TextBox txtOnScreenDuration;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtPooling;
+        private System.Windows.Forms.CheckBox chkMine;
     }
 }

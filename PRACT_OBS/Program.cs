@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
+using PRACT_OBS.Classes.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +23,7 @@ namespace PRACT_OBS
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables()
                 //.AddUserSecrets("b70c8c37-ba6c-4c95-a2a3-be8eaae79d96")
-                .AddUserSecrets(Assembly.GetExecutingAssembly())
+                .AddUserSecrets(System.Reflection.Assembly.GetExecutingAssembly())
                 .AddCommandLine(args)
                 .Build();
 

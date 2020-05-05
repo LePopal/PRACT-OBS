@@ -152,7 +152,7 @@ namespace PRACT_OBS.Classes.Helpers
             return sb.ToString();
         }
 
-        private static Rekordbox6Options Rb6Options
+        public static Rekordbox6Options Rb6Options
         {
             get
             {
