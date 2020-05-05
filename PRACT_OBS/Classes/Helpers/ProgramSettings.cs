@@ -19,7 +19,11 @@ namespace PRACT_OBS.Classes.Helpers
         {
             get
             {
-                return Settings.Default.OutputFolder;
+                // If undefined, the OutputFolder will be the MyDocuments directory
+                if (Settings.Default.OutputFolder == string.Empty)
+                    return Paths.MyDocumentsFolder;
+                else
+                    return Settings.Default.OutputFolder;
             }
             set
             {

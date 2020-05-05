@@ -162,6 +162,14 @@ namespace PRACT_OBS.Classes.Helpers
             }
         }
             
+        public static string MyDocumentsFolder
+        {
+            get
+            {
+                return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            }
+        }
+
 
         private static Rekordbox6Options _Rb6Options = null;
 
