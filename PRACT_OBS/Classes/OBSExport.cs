@@ -76,9 +76,17 @@ namespace PRACT_OBS.Classes
 
                 // Export the artwork
                 // Check if the artwork is the same than before, to limit unnecessary writes
-                string artworkFile = Paths.AnalysisDataRootPath + LastTrack.ImagePath;
 
-                if (!string.IsNullOrEmpty(LastTrack.ImagePath))
+                string artworkFile;
+                if (string.IsNullOrEmpty(LastTrack.ImagePath))
+                    // No artwork available, we take the default artwork if available
+                    artworkFile = ProgramSettings.DefaultArtwork;
+                else
+                    // Artwork file is available
+                    artworkFile = Path.Combine(Paths.AnalysisDataRootPath, LastTrack.ImagePath);
+
+
+                if (File.Exists(artworkFile))
                 {
                     string artworkMD5 = GetMD5(artworkFile);
                     if (artworkMD5 != PreviousArtwork)
@@ -105,10 +113,6 @@ namespace PRACT_OBS.Classes
                     PreviousUpdate = DateTime.Now;
                     IsArtworkFileEmpty = true;
                 }
-
-            }
-            else
-            {
 
             }
         }
