@@ -41,6 +41,12 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtPooling = new System.Windows.Forms.TextBox();
             this.chkMine = new System.Windows.Forms.CheckBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtArtistTitleSeparator = new System.Windows.Forms.TextBox();
+            this.btnDefaultArtwork = new System.Windows.Forms.Button();
+            this.txtDefaultArtwork = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.fileDefaultArtwork = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // label1
@@ -90,7 +96,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(425, 176);
+            this.btnOK.Location = new System.Drawing.Point(422, 251);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(112, 34);
             this.btnOK.TabIndex = 4;
@@ -100,7 +106,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(660, 176);
+            this.btnCancel.Location = new System.Drawing.Point(657, 251);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(112, 34);
             this.btnCancel.TabIndex = 4;
@@ -154,13 +160,66 @@
             this.chkMine.UseVisualStyleBackColor = true;
             this.chkMine.CheckedChanged += new System.EventHandler(this.chkMine_CheckedChanged);
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(13, 164);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(194, 25);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Artist/Title Separator";
+            // 
+            // txtArtistTitleSeparator
+            // 
+            this.txtArtistTitleSeparator.Location = new System.Drawing.Point(218, 164);
+            this.txtArtistTitleSeparator.Name = "txtArtistTitleSeparator";
+            this.txtArtistTitleSeparator.Size = new System.Drawing.Size(990, 31);
+            this.txtArtistTitleSeparator.TabIndex = 1;
+            // 
+            // btnDefaultArtwork
+            // 
+            this.btnDefaultArtwork.Location = new System.Drawing.Point(1152, 201);
+            this.btnDefaultArtwork.Name = "btnDefaultArtwork";
+            this.btnDefaultArtwork.Size = new System.Drawing.Size(55, 34);
+            this.btnDefaultArtwork.TabIndex = 3;
+            this.btnDefaultArtwork.Text = "...";
+            this.btnDefaultArtwork.UseVisualStyleBackColor = true;
+            this.btnDefaultArtwork.Click += new System.EventHandler(this.btnDefaultArtwork_Click);
+            // 
+            // txtDefaultArtwork
+            // 
+            this.txtDefaultArtwork.Location = new System.Drawing.Point(218, 201);
+            this.txtDefaultArtwork.Name = "txtDefaultArtwork";
+            this.txtDefaultArtwork.Size = new System.Drawing.Size(928, 31);
+            this.txtDefaultArtwork.TabIndex = 2;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label6.Location = new System.Drawing.Point(13, 201);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(150, 25);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Default Artwork";
+            // 
+            // fileDefaultArtwork
+            // 
+            this.fileDefaultArtwork.Filter = "Pictures (*.png, *.jpg)|*.png;*.jpg";
+            // 
             // OptionsForm
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(1220, 222);
+            this.ClientSize = new System.Drawing.Size(1220, 293);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.txtDefaultArtwork);
+            this.Controls.Add(this.btnDefaultArtwork);
+            this.Controls.Add(this.txtArtistTitleSeparator);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.chkMine);
             this.Controls.Add(this.txtPooling);
             this.Controls.Add(this.label4);
@@ -198,5 +257,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtPooling;
         private System.Windows.Forms.CheckBox chkMine;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtArtistTitleSeparator;
+        private System.Windows.Forms.Button btnDefaultArtwork;
+        private System.Windows.Forms.TextBox txtDefaultArtwork;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.OpenFileDialog fileDefaultArtwork;
     }
 }

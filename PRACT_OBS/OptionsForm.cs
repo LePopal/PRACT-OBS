@@ -28,14 +28,9 @@ namespace PRACT_OBS
             txtOutputFolder.Text = ProgramSettings.OutputFolder;
             txtOnScreenDuration.Text = ProgramSettings.OnScreenDuration.ToString();
             txtPooling.Text = ProgramSettings.Timer.ToString();
+            txtArtistTitleSeparator.Text = ProgramSettings.ArtistTitleSeparator;
+            txtDefaultArtwork.Text = ProgramSettings.DefaultArtwork;
             
-        }
-
-        private void btnOutputFolder_Click(object sender, EventArgs e)
-        {
-            outputFolderDialog.SelectedPath = txtOutputFolder.Text;
-            outputFolderDialog.ShowDialog();
-            txtOutputFolder.Text = outputFolderDialog.SelectedPath;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -78,6 +73,14 @@ namespace PRACT_OBS
             }
             else
                 ProgramSettings.Timer = int.Parse(txtPooling.Text);
+            ProgramSettings.ArtistTitleSeparator = txtArtistTitleSeparator.Text;
+            if (!File.Exists(txtDefaultArtwork.Text))
+            {
+                Messages.ErrorMessage("Impossible to set default artwork to {0}. The file doesn't exist !");
+            }
+            else
+                ProgramSettings.DefaultArtwork = txtDefaultArtwork.Text;
+
             this.Close();
         }
             
@@ -130,6 +133,23 @@ namespace PRACT_OBS
         private void chkMine_CheckedChanged(object sender, EventArgs e)
         {
             txtKey.Enabled = !chkMine.Checked;
+        }
+
+        private void btnDefaultArtwork_Click(object sender, EventArgs e)
+        {
+            if (File.Exists(txtDefaultArtwork.Text))
+                fileDefaultArtwork.FileName = txtDefaultArtwork.Text;
+            else
+                fileDefaultArtwork.FileName = string.Empty;
+            fileDefaultArtwork.ShowDialog();
+            txtDefaultArtwork.Text = fileDefaultArtwork.FileName;
+
+        }
+        private void btnOutputFolder_Click(object sender, EventArgs e)
+        {
+            outputFolderDialog.SelectedPath = txtOutputFolder.Text;
+            outputFolderDialog.ShowDialog();
+            txtOutputFolder.Text = outputFolderDialog.SelectedPath;
         }
     }
 }

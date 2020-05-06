@@ -2,6 +2,7 @@
 using PRACT_OBS.Properties;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Configuration;
 using System.IO;
 using System.Text;
@@ -111,6 +112,32 @@ namespace PRACT_OBS.Classes.Helpers
                 Settings.Default.Save();
             }
         }
+
+        public static string ArtistTitleSeparator
+        {
+            get
+            {
+                return Settings.Default.ArtistTitleSeparator;
+            }
+            set
+            {
+                Settings.Default.ArtistTitleSeparator = value;
+                Settings.Default.Save();
+            }
+        }
+        public static string DefaultArtwork
+        {
+            get
+            {
+                return Settings.Default.DefaultArtwork;
+            }
+            set
+            {
+                Settings.Default.DefaultArtwork = value;
+                Settings.Default.Save();
+            }
+        }
+
         private static void MineKey()
         {
             // Load App.asar and clean/stripe it to better find what we're looking for
