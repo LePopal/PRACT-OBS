@@ -91,7 +91,7 @@
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(160, 55);
             this.btnStart.TabIndex = 1;
-            this.btnStart.Text = "Start";
+            this.btnStart.Text = "Start (F5)";
             this.btnStart.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
@@ -367,7 +367,7 @@
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(157, 55);
             this.btnStop.TabIndex = 3;
-            this.btnStop.Text = "Pause";
+            this.btnStop.Text = "Pause (F8)";
             this.btnStop.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.button2_Click);

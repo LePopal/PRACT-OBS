@@ -183,5 +183,38 @@ namespace PRACT_OBS
             DebugForm debugForm = new DebugForm();
             debugForm.ShowDialog();
         }
+
+        /// <summary>
+        /// Keyboard shortcuts management
+        /// </summary>
+        /// <param name="msg"></param>
+        /// <param name="keyData"></param>
+        /// <returns></returns>
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            switch(keyData)
+            {
+                case Keys.F5:
+                    if (btnStart.Enabled)
+                    {
+                        StartExport();
+                        return true;
+                    }
+                    else
+                        break;
+                case Keys.F8:
+                    if (btnStop.Enabled)
+                    {
+                        StopExport();
+                        return true;
+                    }
+                    else
+                        break;
+                default:
+                    return base.ProcessCmdKey(ref msg, keyData);
+            }
+            return base.ProcessCmdKey(ref msg, keyData);
+
+        }
     }
 }
