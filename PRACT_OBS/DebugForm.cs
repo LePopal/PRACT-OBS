@@ -17,7 +17,7 @@ namespace PRACT_OBS
             InitializeComponent();
             StringBuilder sb = new StringBuilder();
             sb.Append("Key=")
-                .AppendLine(ProgramSettings.Key)
+                .AppendLine(ProgramSettings.PassphraseToMine ? ProgramSettings.PASSPHRASE_TO_MINE : ProgramSettings.Key)
                 .Append("OutputFolder=")
                 .AppendLine(ProgramSettings.OutputFolder)
                 .Append("PoolingPeriod=")
@@ -36,6 +36,10 @@ namespace PRACT_OBS
                 .AppendLine(Paths.RekordboxBinariesFolder)
                 .Append("App.asar=")
                 .AppendLine(Paths.AppAsarFilePath)
+                .Append("ArtistTitleSeparator=")
+                .AppendLine(ProgramSettings.ArtistTitleSeparator)
+                .Append("DefaultArtwork=")
+                .AppendLine(ProgramSettings.DefaultArtwork)
                 ;
             txtDebugInfo.Text = sb.ToString();
         }

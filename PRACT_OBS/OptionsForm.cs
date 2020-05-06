@@ -76,7 +76,7 @@ namespace PRACT_OBS
             ProgramSettings.ArtistTitleSeparator = txtArtistTitleSeparator.Text;
             if (!File.Exists(txtDefaultArtwork.Text))
             {
-                Messages.ErrorMessage("Impossible to set default artwork to {0}. The file doesn't exist !");
+                Messages.ErrorMessage(string.Format("Impossible to set default artwork to {0}. The file doesn't exist !", txtDefaultArtwork.Text));
             }
             else
                 ProgramSettings.DefaultArtwork = txtDefaultArtwork.Text;
