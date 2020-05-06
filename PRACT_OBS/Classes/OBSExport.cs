@@ -24,6 +24,7 @@ namespace PRACT_OBS.Classes
                 // Check if the artist is the same than before, to limit unnecessary writes
                 if (LastTrack.Artist != PreviousArtist)
                 {
+                    rewriteArtistTitleFile = true;
                     WriteMetaData(Path.Combine(OutputFolder, ARTIST_FILENAME), LastTrack.Artist);
                     PreviousArtist = LastTrack.Artist;
                     PreviousUpdate = DateTime.Now;
@@ -33,6 +34,7 @@ namespace PRACT_OBS.Classes
                 {
                     if (!IsArtistFileEmpty && timesUp)
                     {
+                        rewriteArtistTitleFile = true;
                         WriteMetaData(Path.Combine(OutputFolder, ARTIST_FILENAME), string.Empty);
                         IsArtistFileEmpty = true;
                     }
@@ -41,6 +43,7 @@ namespace PRACT_OBS.Classes
                 // Check if the title is the same than before, to limit unnecessary writes
                 if (LastTrack.Title != PreviousTitle)
                 {
+                    rewriteArtistTitleFile = true;
                     WriteMetaData(Path.Combine(OutputFolder, TITLE_FILENAME), LastTrack.Title);
                     PreviousTitle = LastTrack.Title;
                     PreviousUpdate = DateTime.Now;
@@ -50,22 +53,22 @@ namespace PRACT_OBS.Classes
                 {
                     if (!IsTitleFileEmpty && timesUp)
                     {
+                        rewriteArtistTitleFile = true;
                         WriteMetaData(Path.Combine(OutputFolder, TITLE_FILENAME), string.Empty);
                         IsTitleFileEmpty = true;
                     }
                 }
 
                 // Export the Artist+Title
-                if(LastTrack.Artist != PreviousArtist ||
-                    LastTrack.Title != PreviousTitle)
+                if(rewriteArtistTitleFile)
                 {
                     WriteMetaData(Path.Combine(OutputFolder, ARTIST_TITLE_FILENAME),
-                        string.Format("{0} {1} {2}", LastTrack.Artist, "-", LastTrack.Title));
+                        string.Format("{0} {1} {2}", LastTrack.Artist, ProgramSettings.ArtistTitleSeparator, LastTrack.Title));
                     PreviousUpdate = DateTime.Now;
                 }
                 else
                 {
-                    if(!IsTitleFileEmpty && !IsArtistFileEmpty && timesUp)
+                    if(timesUp)
                     {
                         WriteMetaData(Path.Combine(OutputFolder, ARTIST_TITLE_FILENAME), string.Empty);
                     }
