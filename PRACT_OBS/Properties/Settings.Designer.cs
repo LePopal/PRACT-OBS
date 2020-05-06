@@ -118,5 +118,17 @@ namespace PRACT_OBS.Properties {
                 this["ArtistTitleSeparator"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DefaultArtwork {
+            get {
+                return ((string)(this["DefaultArtwork"]));
+            }
+            set {
+                this["DefaultArtwork"] = value;
+            }
+        }
     }
 }
