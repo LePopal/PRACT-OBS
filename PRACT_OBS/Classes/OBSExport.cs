@@ -16,6 +16,7 @@ namespace PRACT_OBS.Classes
             // Check if it's time to remove what's on screen or not
             bool timesUp = (PreviousUpdate == DateTime.MinValue) ||
                 DateTime.Now > PreviousUpdate.Add(TimeSpan.FromSeconds((double)OnScreenDuration));
+            bool rewriteArtistTitleFile = true;
 
             if (LastTrack != null)
             {
@@ -53,6 +54,23 @@ namespace PRACT_OBS.Classes
                         IsTitleFileEmpty = true;
                     }
                 }
+
+                // Export the Artist+Title
+                if(LastTrack.Artist != PreviousArtist ||
+                    LastTrack.Title != PreviousTitle)
+                {
+                    WriteMetaData(Path.Combine(OutputFolder, ARTIST_TITLE_FILENAME),
+                        string.Format("{0} {1} {2}", LastTrack.Artist, "-", LastTrack.Title));
+                    PreviousUpdate = DateTime.Now;
+                }
+                else
+                {
+                    if(!IsTitleFileEmpty && !IsArtistFileEmpty && timesUp)
+                    {
+                        WriteMetaData(Path.Combine(OutputFolder, ARTIST_TITLE_FILENAME), string.Empty);
+                    }
+                }
+
                 // Export the artwork
                 // Check if the artwork is the same than before, to limit unnecessary writes
                 string artworkFile = Paths.AnalysisDataRootPath + LastTrack.ImagePath;
@@ -178,6 +196,7 @@ namespace PRACT_OBS.Classes
         private const string ARTWORK_FILENAME = "Artwork.jpg";
         private const string ARTIST_FILENAME = "Artist.txt";
         private const string TITLE_FILENAME = "Title.txt";
+        private const string ARTIST_TITLE_FILENAME = "ArtistTitle.txt";
         private static string _OutputFolder = string.Empty;
     }
 }

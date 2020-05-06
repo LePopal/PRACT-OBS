@@ -106,5 +106,17 @@ namespace PRACT_OBS.Properties {
                 this["PassphraseToMine"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("-")]
+        public string ArtistTitleSeparator {
+            get {
+                return ((string)(this["ArtistTitleSeparator"]));
+            }
+            set {
+                this["ArtistTitleSeparator"] = value;
+            }
+        }
     }
 }
