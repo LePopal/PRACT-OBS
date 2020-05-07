@@ -83,7 +83,7 @@ namespace PRACT_OBS.Classes
                     artworkFile = ProgramSettings.DefaultArtwork;
                 else
                     // Artwork file is available
-                    artworkFile = Path.Combine(Paths.AnalysisDataRootPath, LastTrack.ImagePath);
+                    artworkFile = Paths.AnalysisDataRootPath + LastTrack.ImagePath;
 
 
                 if (File.Exists(artworkFile))

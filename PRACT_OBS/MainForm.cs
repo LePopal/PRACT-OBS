@@ -84,7 +84,10 @@ namespace PRACT_OBS
                         }
                         else
                         {
-                            picArtwork.Image = null;
+                            if (!string.IsNullOrEmpty(ProgramSettings.DefaultArtwork))
+                                picArtwork.Image = Image.FromFile(ProgramSettings.DefaultArtwork);
+                            else
+                                picArtwork.Image = null;
                         }
                     }
                     );
