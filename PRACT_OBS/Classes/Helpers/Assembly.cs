@@ -17,7 +17,7 @@ namespace PRACT_OBS.Classes.Helpers
                 if (attributes.Length > 0)
                 {
                     AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
-                    if (titleAttribute.Title != "")
+                    if (string.IsNullOrWhiteSpace(titleAttribute.Title))
                     {
                         return titleAttribute.Title;
                     }
