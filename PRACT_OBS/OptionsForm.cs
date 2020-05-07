@@ -44,7 +44,7 @@ namespace PRACT_OBS
             if (!CheckKey())
                 Messages.WarningMessage("This key doesn't seem to be valid!");
 
-            ProgramSettings.OutputFolder = txtOutputFolder.Text;
+            ProgramSettings.OutputFolder = txtOutputFolder.Text.Trim();
 
             if (!CheckOutputFolder() &&
                     (Messages.YesNoMessage("The Output Folder does not exist, would you like to create it ?") ==
@@ -53,7 +53,7 @@ namespace PRACT_OBS
                 try
                 {
                     Directory.CreateDirectory(txtOutputFolder.Text);
-                    ProgramSettings.OutputFolder = txtOutputFolder.Text;
+                    ProgramSettings.OutputFolder = txtOutputFolder.Text.Trim();
                 }
                 catch
                 {
@@ -80,7 +80,7 @@ namespace PRACT_OBS
                 Messages.ErrorMessage(string.Format("Impossible to set default artwork to {0}. The file doesn't exist !", txtDefaultArtwork.Text));
             }
             else
-                ProgramSettings.DefaultArtwork = txtDefaultArtwork.Text;
+                ProgramSettings.DefaultArtwork = txtDefaultArtwork.Text.Trim();
 
             this.Close();
         }

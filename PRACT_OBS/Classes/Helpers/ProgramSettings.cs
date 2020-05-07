@@ -24,7 +24,7 @@ namespace PRACT_OBS.Classes.Helpers
                 if (Settings.Default.OutputFolder == string.Empty)
                     return Paths.MyDocumentsFolder;
                 else
-                    return Settings.Default.OutputFolder;
+                    return Settings.Default.OutputFolder.Trim();
             }
             set
             {
