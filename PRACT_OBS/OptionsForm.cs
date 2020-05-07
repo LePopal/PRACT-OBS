@@ -74,7 +74,8 @@ namespace PRACT_OBS
             else
                 ProgramSettings.Timer = int.Parse(txtPooling.Text);
             ProgramSettings.ArtistTitleSeparator = txtArtistTitleSeparator.Text;
-            if (!File.Exists(txtDefaultArtwork.Text))
+            if (!string.IsNullOrWhiteSpace(txtDefaultArtwork.Text)
+                && !File.Exists(txtDefaultArtwork.Text))
             {
                 Messages.ErrorMessage(string.Format("Impossible to set default artwork to {0}. The file doesn't exist !", txtDefaultArtwork.Text));
             }
@@ -143,6 +144,12 @@ namespace PRACT_OBS
                 fileDefaultArtwork.FileName = string.Empty;
             fileDefaultArtwork.ShowDialog();
             txtDefaultArtwork.Text = fileDefaultArtwork.FileName;
+
+        }
+
+        private void btnClearDefaultArtwork_Click(object sender, EventArgs e)
+        {
+            txtDefaultArtwork.Text = string.Empty;
 
         }
         private void btnOutputFolder_Click(object sender, EventArgs e)

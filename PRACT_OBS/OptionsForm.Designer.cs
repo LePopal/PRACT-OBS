@@ -47,6 +47,7 @@
             this.txtDefaultArtwork = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.fileDefaultArtwork = new System.Windows.Forms.OpenFileDialog();
+            this.btnClearDefaultArtwork = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -191,7 +192,7 @@
             // 
             this.txtDefaultArtwork.Location = new System.Drawing.Point(218, 201);
             this.txtDefaultArtwork.Name = "txtDefaultArtwork";
-            this.txtDefaultArtwork.Size = new System.Drawing.Size(928, 31);
+            this.txtDefaultArtwork.Size = new System.Drawing.Size(867, 31);
             this.txtDefaultArtwork.TabIndex = 2;
             // 
             // label6
@@ -208,6 +209,16 @@
             // 
             this.fileDefaultArtwork.Filter = "Pictures (*.png, *.jpg)|*.png;*.jpg";
             // 
+            // btnClearDefaultArtwork
+            // 
+            this.btnClearDefaultArtwork.Location = new System.Drawing.Point(1091, 201);
+            this.btnClearDefaultArtwork.Name = "btnClearDefaultArtwork";
+            this.btnClearDefaultArtwork.Size = new System.Drawing.Size(55, 34);
+            this.btnClearDefaultArtwork.TabIndex = 3;
+            this.btnClearDefaultArtwork.Text = "X";
+            this.btnClearDefaultArtwork.UseVisualStyleBackColor = true;
+            this.btnClearDefaultArtwork.Click += new System.EventHandler(this.btnClearDefaultArtwork_Click);
+            // 
             // OptionsForm
             // 
             this.AcceptButton = this.btnOK;
@@ -215,6 +226,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1220, 293);
+            this.Controls.Add(this.btnClearDefaultArtwork);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtDefaultArtwork);
             this.Controls.Add(this.btnDefaultArtwork);
@@ -263,5 +275,6 @@
         private System.Windows.Forms.TextBox txtDefaultArtwork;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.OpenFileDialog fileDefaultArtwork;
+        private System.Windows.Forms.Button btnClearDefaultArtwork;
     }
 }
