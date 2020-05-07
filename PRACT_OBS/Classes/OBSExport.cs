@@ -63,7 +63,7 @@ namespace PRACT_OBS.Classes
                 if(rewriteArtistTitleFile)
                 {
                     WriteMetaData(Path.Combine(OutputFolder, ARTIST_TITLE_FILENAME),
-                        string.Format("{0} {1} {2}", LastTrack.Artist, ProgramSettings.ArtistTitleSeparator, LastTrack.Title));
+                        string.Format("{0} {1} {2} {1}{1}{1} ", LastTrack.Artist, ProgramSettings.ArtistTitleSeparator, LastTrack.Title));
                     PreviousUpdate = DateTime.Now;
                 }
                 else
