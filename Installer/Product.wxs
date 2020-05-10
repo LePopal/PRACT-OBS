@@ -1,132 +1,244 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi"><?define PRACT_OBS_TargetDir=$(var.PRACT_OBS.TargetDir)?>
-	<Product Id="{A6F8EE56-9FBC-4E8E-90A3-5F47674EF3B0}" Name="PRACT OBS" Language="1033" Version="1.0.0.0" Manufacturer="Popal" UpgradeCode="24103ad6-a6fd-44ae-bea1-71776ec722db">
-		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <?define PRACT_OBS_TargetDir=$(var.PRACT_OBS.TargetDir)?>
+  <Product Id="{A6F8EE56-9FBC-4E8E-90A3-5F47674EF3B0}" Name="PRACT OBS" Language="1033" Version="0.4.1.0" Manufacturer="Popal" UpgradeCode="24103ad6-a6fd-44ae-bea1-71776ec722db">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Description="PRACT OBS: Export Rekordbox v6 played tracks to OBS" />
 
-		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
-		<MediaTemplate EmbedCab="yes"/>
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate EmbedCab="yes"/>
 
-		<Feature Id="ProductFeature" Title="PRACT-OBS-Installer" Level="1">
-			<ComponentGroupRef Id="ProductComponents" />
-			<ComponentGroupRef Id="ProgramFilesFolder_files" />
-		</Feature>
-	</Product>
 
-	<Fragment>
-		<Directory Id="TARGETDIR" Name="SourceDir">
-			<Directory Id="ProgramFilesFolder">
-				<Directory Id="INSTALLFOLDER" Name="PRACT OBS" />
-			</Directory>
-		</Directory>
+    <Icon Id="MyShortcutIcon" SourceFile="$(var.ProjectDir)app.ico"/>
+    <Property Id="ARPPRODUCTICON" Value="MyShortcutIcon" />
 
-	</Fragment>
+    <WixVariable Id="WixUILicenseRtf" Value="$(var.ProjectDir)ApacheLicense2.0.rtf"/>
 
-	<Fragment>
-		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
-			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
-			<!-- <Component Id="ProductComponent"> -->
-				<!-- TODO: Insert files, registry keys, and other resources here. -->
-			<!-- </Component> -->
-		</ComponentGroup>
-	</Fragment>
-	<Fragment>
-	  <ComponentGroup Id="ProgramFilesFolder_files" Directory="ProgramFilesFolder">
-      <Component Id="PRACT_OBS.exe" Guid="da4a25a1-6b06-4cc1-b4a9-33cbc4c2a7c9">
-        <File Id="PRACT_OBS.exxe" Name="PRACT_OBS.exe" Source="$(var.PRACT_OBS_TargetDir)PRACT_OBS.exe" />
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER"></Property>
+    <UIRef Id="WixUI_InstallDir"/>
+    <UIRef Id="WixUI_ErrorProgressText"/>
+
+    <Property Id="WIXUI_EXITDIALOGOPTIONALTEXT" Value="Thank your for installing PRACT OBS."></Property>
+
+    <Feature Id="ProductFeature" Title="PRACT-OBS-Installer" Level="1">
+      <ComponentGroupRef Id="ProgramFilesFolder_files" />
+      <ComponentGroupRef Id="ProgramFilesFolder_WinX64Native" />
+      <ComponentGroupRef Id="ProgramFilesFolder_WinX86Native" />
+      <ComponentRef Id="ApplicationShortcut"/>
+      <ComponentRef Id="ApplicationDesktopShortcut"/>
+    </Feature>
+
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="ManufacturerFolder" Name="!(bind.property.Manufacturer)">
+          <Directory Id="INSTALLFOLDER" Name="!(bind.property.ProductName)">
+            <Directory Id="Runtimes" Name="runtimes">
+              <Directory Id="RuntimesX64" Name="win-x64">
+                <Directory Id="RuntimeX64Native" Name="native">
+                  <Component Id="CreateRuntimesX64Folder" Guid="ecf14c41-ea1d-40a7-bd37-21c8c4d3ba98">
+                    <CreateFolder />
+                  </Component>
+                </Directory>
+              </Directory>
+              <Directory Id="RuntimesX86" Name="win-x86">
+                <Directory Id="RuntimeX86Native" Name="native">
+                  <Component Id="CreateRuntimesX86Folder" Guid="18e2ae2f-f0f7-4820-b32c-ed32220127e1">
+                    <CreateFolder />
+                  </Component>
+                </Directory>
+              </Directory>
+            </Directory>
+          </Directory>
+        </Directory>
+      </Directory>
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="MfgStartMenuFolder" Name="!(bind.property.Manufacturer)" />
+      </Directory>
+      <Directory Id="DesktopFolder" Name="Desktop" />
+    </Directory>
+
+    <Feature Id="CreateRuntimesX64Folder" Title="native" Level="1">
+      <ComponentRef Id="CreateRuntimesX64Folder"/>
+    </Feature>
+    <Feature Id="CreateRuntimesX86Folder" Title="native" Level="1">
+      <ComponentRef Id="CreateRuntimesX86Folder"/>
+    </Feature>
+  </Fragment>
+
+  <!-- Start Menu shortcut -->
+  <Fragment>
+    <DirectoryRef Id="MfgStartMenuFolder">
+      <Component Id="ApplicationShortcut" Guid="5bfda79c-9655-4bbe-b2c4-e98973aefbe4">
+        <Shortcut Id="ApplicationStartMenuShortcut"
+                  Name="!(bind.property.ProductName)"
+                  Description="Livestream with PRACT OBS"
+                  Directory="MfgStartMenuFolder"
+                  Target="[INSTALLFOLDER]PRACT_OBS.exe"
+                  WorkingDirectory="INSTALLFOLDER"
+                  Icon="MyShortcutIcon" />
+        <RemoveFolder Id="RemoveMfgStartMenuFolder"
+                      Directory="MfgStartMenuFolder"
+                      On="uninstall"/>
+        <RegistryValue Root="HKCU"
+                       Key="Software\Popal\PRACT OBS\ProgramMenuShortcut"
+                       Name="installed"
+                       Type="integer"
+                       Value="1"
+                       KeyPath="yes"/>
       </Component>
-	    <Component Id="PRACT_OBS.runtimeconfig.json" Guid="a442c2be-0db5-46c8-8691-52cb7e173146">
-	      <File Id="PRACT_OBS.runtimeconfig.json" Name="PRACT_OBS.runtimeconfig.json" Source="$(var.PRACT_OBS_TargetDir)PRACT_OBS.runtimeconfig.json" />
-	    </Component>
-	    <Component Id="PRACT_OBS.dll" Guid="2773c07c-50ba-4507-a215-8492f24ddbdf">
-	      <File Id="PRACT_OBS.dll" Name="PRACT_OBS.dll" Source="$(var.PRACT_OBS_TargetDir)PRACT_OBS.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Extensions.Configuration.UserSecrets.dll" Guid="e729d979-b384-407a-b43f-32166436b179">
-	      <File Id="Microsoft.Extensions.Configuration.UserSecrets.dll" Name="Microsoft.Extensions.Configuration.UserSecrets.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Configuration.UserSecrets.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Extensions.Configuration.Abstractions.dll" Guid="e1fa576b-015b-403a-afc1-c62c996db60b">
-	      <File Id="Microsoft.Extensions.Configuration.Abstractions.dll" Name="Microsoft.Extensions.Configuration.Abstractions.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Configuration.Abstractions.dll" />
-	    </Component>
-	    <Component Id="Microsoft.EntityFrameworkCore.dll" Guid="18b57b74-a976-4564-9067-733c8436040d">
-	      <File Id="Microsoft.EntityFrameworkCore.dll" Name="Microsoft.EntityFrameworkCore.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.EntityFrameworkCore.dll" />
-	    </Component>
-	    <Component Id="System.Text.Json.dll" Guid="e760aab4-b723-4eaa-8f79-39135da19292">
-	      <File Id="System.Text.Json.dll" Name="System.Text.Json.dll" Source="$(var.PRACT_OBS_TargetDir)System.Text.Json.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Extensions.Configuration.dll" Guid="f8c7935a-7d01-48c0-bfaa-2394258f93aa">
-	      <File Id="Microsoft.Extensions.Configuration.dll" Name="Microsoft.Extensions.Configuration.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Configuration.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Extensions.Configuration.Json.dll" Guid="d05081e2-1672-4e33-a149-52a27ddf6619">
-	      <File Id="Microsoft.Extensions.Configuration.Json.dll" Name="Microsoft.Extensions.Configuration.Json.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Configuration.Json.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Extensions.Configuration.EnvironmentVariables.dll" Guid="348c3e1b-87f2-446d-be87-c1b7495180aa">
-	      <File Id="Microsoft.Extensions.Configuration.EnvironmentVariables.dll" Name="Microsoft.Extensions.Configuration.EnvironmentVariables.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Configuration.EnvironmentVariables.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Extensions.Configuration.CommandLine.dll" Guid="f97ca871-e918-4ebf-8627-ba216261a83c">
-	      <File Id="Microsoft.Extensions.Configuration.CommandLine.dll" Name="Microsoft.Extensions.Configuration.CommandLine.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Configuration.CommandLine.dll" />
-	    </Component>
-	    <Component Id="Microsoft.EntityFrameworkCore.Relational.dll" Guid="93c0b0cc-b0db-41ba-b15e-1e160a6425cc">
-	      <File Id="Microsoft.EntityFrameworkCore.Relational.dll" Name="Microsoft.EntityFrameworkCore.Relational.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.EntityFrameworkCore.Relational.dll" />
-	    </Component>
-	    <Component Id="Microsoft.EntityFrameworkCore.Sqlite.dll" Guid="b5939d55-419c-433a-994f-4b0dbf6b6de5">
-	      <File Id="Microsoft.EntityFrameworkCore.Sqlite.dll" Name="Microsoft.EntityFrameworkCore.Sqlite.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.EntityFrameworkCore.Sqlite.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Extensions.FileProviders.Physical.dll" Guid="4818d8c5-dbc2-462f-938c-51caf3e39c23">
-	      <File Id="Microsoft.Extensions.FileProviders.Physical.dll" Name="Microsoft.Extensions.FileProviders.Physical.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.FileProviders.Physical.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Extensions.Primitives.dll" Guid="c867e1c0-c4d8-403c-8f28-e43d118c1986">
-	      <File Id="Microsoft.Extensions.Primitives.dll" Name="Microsoft.Extensions.Primitives.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Primitives.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Extensions.FileProviders.Abstractions.dll" Guid="7996d0f4-4d48-461f-8bba-4ac0e7c128b0">
-	      <File Id="Microsoft.Extensions.FileProviders.Abstractions.dll" Name="Microsoft.Extensions.FileProviders.Abstractions.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.FileProviders.Abstractions.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Extensions.FileSystemGlobbing.dll" Guid="4479b1bd-4a9f-43cc-bbee-9827cce8a436">
-	      <File Id="Microsoft.Extensions.FileSystemGlobbing.dll" Name="Microsoft.Extensions.FileSystemGlobbing.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.FileSystemGlobbing.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Extensions.DependencyInjection.Abstractions.dll" Guid="92e21c82-040e-441d-ab32-1b175c23693e">
-	      <File Id="Microsoft.Extensions.DependencyInjection.Abstractions.dll" Name="Microsoft.Extensions.DependencyInjection.Abstractions.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Bcl.AsyncInterfaces.dll" Guid="e3ab9812-2222-413e-b07e-88948957b9cf">
-	      <File Id="Microsoft.Bcl.AsyncInterfaces.dll" Name="Microsoft.Bcl.AsyncInterfaces.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Bcl.AsyncInterfaces.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Extensions.Logging.Abstractions.dll" Guid="2b0aa0f0-cd06-4fbc-a79e-b3f15a7d5b8c">
-	      <File Id="Microsoft.Extensions.Logging.Abstractions.dll" Name="Microsoft.Extensions.Logging.Abstractions.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Logging.Abstractions.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Extensions.Caching.Abstractions.dll" Guid="50846a87-f89f-4946-bd6d-3ea19b5b4fab">
-	      <File Id="Microsoft.Extensions.Caching.Abstractions.dll" Name="Microsoft.Extensions.Caching.Abstractions.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Caching.Abstractions.dll" />
-	    </Component>
-	    <Component Id="Microsoft.EntityFrameworkCore.Abstractions.dll" Guid="7cbd28f9-7d98-4bec-a490-311884b5b695">
-	      <File Id="Microsoft.EntityFrameworkCore.Abstractions.dll" Name="Microsoft.EntityFrameworkCore.Abstractions.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.EntityFrameworkCore.Abstractions.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Bcl.HashCode.dll" Guid="78a27295-d356-4dec-8d7c-fff0e9b021f7">
-	      <File Id="Microsoft.Bcl.HashCode.dll" Name="Microsoft.Bcl.HashCode.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Bcl.HashCode.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Extensions.DependencyInjection.dll" Guid="3a3f4a61-848d-4043-a047-6cb2cec8758e">
-	      <File Id="Microsoft.Extensions.DependencyInjection.dll" Name="Microsoft.Extensions.DependencyInjection.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.DependencyInjection.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Extensions.Logging.dll" Guid="145da076-dd7b-41be-a1f7-9272fa41bb09">
-	      <File Id="Microsoft.Extensions.Logging.dll" Name="Microsoft.Extensions.Logging.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Logging.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Extensions.Options.dll" Guid="4a78f38f-5faa-4232-88f6-092740b198c9">
-	      <File Id="Microsoft.Extensions.Options.dll" Name="Microsoft.Extensions.Options.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Options.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Extensions.Caching.Memory.dll" Guid="b2d347fc-cf54-4592-bc7d-0c9d0db9dcd0">
-	      <File Id="Microsoft.Extensions.Caching.Memory.dll" Name="Microsoft.Extensions.Caching.Memory.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Caching.Memory.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Extensions.Configuration.FileExtensions.dll" Guid="8cb98878-ef22-4d4c-b796-cdca13f7e74c">
-	      <File Id="Microsoft.Extensions.Configuration.FileExtensions.dll" Name="Microsoft.Extensions.Configuration.FileExtensions.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Configuration.FileExtensions.dll" />
-	    </Component>
-	    <Component Id="Microsoft.DotNet.PlatformAbstractions.dll" Guid="35c7f15e-89d8-4be1-a2ce-5162943710cd">
-	      <File Id="Microsoft.DotNet.PlatformAbstractions.dll" Name="Microsoft.DotNet.PlatformAbstractions.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.DotNet.PlatformAbstractions.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Data.Sqlite.dll" Guid="798684f7-4060-4010-b6e2-cfaa0f1e8474">
-	      <File Id="Microsoft.Data.Sqlite.dll" Name="Microsoft.Data.Sqlite.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Data.Sqlite.dll" />
-	    </Component>
-	    <Component Id="SQLitePCLRaw.core.dll" Guid="26ea78cd-e5bd-4e6e-8da7-1ea9a9f4babf">
-	      <File Id="SQLitePCLRaw.core.dll" Name="SQLitePCLRaw.core.dll" Source="$(var.PRACT_OBS_TargetDir)SQLitePCLRaw.core.dll" />
-	    </Component>
-	    <Component Id="Microsoft.Extensions.DependencyModel.dll" Guid="e1bd7a57-2b4a-456e-86af-545963b04c5a">
-	      <File Id="Microsoft.Extensions.DependencyModel.dll" Name="Microsoft.Extensions.DependencyModel.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.DependencyModel.dll" />
-	    </Component>
-	  </ComponentGroup>
-	</Fragment>
+    </DirectoryRef>
+  </Fragment>
+
+  <Fragment>
+    <DirectoryRef Id="DesktopFolder">
+      <Component Id="ApplicationDesktopShortcut" Guid="cf9784ca-b87b-4292-8031-82e448ec5b58">
+        <Shortcut Id="MyDesktopShortcut"
+                  Name="!(name.property.ProductName)"
+                  Description="Livestream with PRACT OBS"
+                  Directory="DesktopFolder"
+                  Target="[INSTALLFOLDER]PRACT_OBS.exe"
+                  Icon="MyShortcutIcon"/>
+        <RegistryValue Root="HKCU"
+                       Key="Software\Popal\PRACT OBS\DesktopShortcut"
+                       Name="installed"
+                       Type="integer"
+                       Value="1"
+                       KeyPath="yes"/>
+      </Component>
+    </DirectoryRef>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProgramFilesFolder_files" Directory="INSTALLFOLDER">
+      <Component Id="PRACT_OBS.exe" Guid="da4a25a1-6b06-4cc1-b4a9-33cbc4c2a7c9">
+        <File Id="PRACT_OBS.exe" Name="PRACT_OBS.exe" Source="$(var.PRACT_OBS_TargetDir)PRACT_OBS.exe" KeyPath="yes" />
+      </Component>
+      <Component Id="PRACT_OBS.runtimeconfig.json" Guid="a442c2be-0db5-46c8-8691-52cb7e173146">
+        <File Id="PRACT_OBS.runtimeconfig.json" Name="PRACT_OBS.runtimeconfig.json" Source="$(var.PRACT_OBS_TargetDir)PRACT_OBS.runtimeconfig.json" />
+      </Component>
+      <Component Id="PRACT_OBS.dll" Guid="2773c07c-50ba-4507-a215-8492f24ddbdf">
+        <File Id="PRACT_OBS.dll" Name="PRACT_OBS.dll" Source="$(var.PRACT_OBS_TargetDir)PRACT_OBS.dll" KeyPath="yes"/>
+      </Component>
+      <Component Id="Microsoft.Extensions.Configuration.UserSecrets.dll" Guid="e729d979-b384-407a-b43f-32166436b179">
+        <File Id="Microsoft.Extensions.Configuration.UserSecrets.dll" Name="Microsoft.Extensions.Configuration.UserSecrets.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Configuration.UserSecrets.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.Configuration.Abstractions.dll" Guid="e1fa576b-015b-403a-afc1-c62c996db60b">
+        <File Id="Microsoft.Extensions.Configuration.Abstractions.dll" Name="Microsoft.Extensions.Configuration.Abstractions.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Configuration.Abstractions.dll" />
+      </Component>
+      <Component Id="Microsoft.EntityFrameworkCore.dll" Guid="18b57b74-a976-4564-9067-733c8436040d">
+        <File Id="Microsoft.EntityFrameworkCore.dll" Name="Microsoft.EntityFrameworkCore.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.EntityFrameworkCore.dll" />
+      </Component>
+      <Component Id="System.Text.Json.dll" Guid="e760aab4-b723-4eaa-8f79-39135da19292">
+        <File Id="System.Text.Json.dll" Name="System.Text.Json.dll" Source="$(var.PRACT_OBS_TargetDir)System.Text.Json.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.Configuration.dll" Guid="f8c7935a-7d01-48c0-bfaa-2394258f93aa">
+        <File Id="Microsoft.Extensions.Configuration.dll" Name="Microsoft.Extensions.Configuration.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Configuration.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.Configuration.Json.dll" Guid="d05081e2-1672-4e33-a149-52a27ddf6619">
+        <File Id="Microsoft.Extensions.Configuration.Json.dll" Name="Microsoft.Extensions.Configuration.Json.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Configuration.Json.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.Configuration.EnvironmentVariables.dll" Guid="348c3e1b-87f2-446d-be87-c1b7495180aa">
+        <File Id="Microsoft.Extensions.Configuration.EnvironmentVariables.dll" Name="Microsoft.Extensions.Configuration.EnvironmentVariables.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Configuration.EnvironmentVariables.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.Configuration.CommandLine.dll" Guid="f97ca871-e918-4ebf-8627-ba216261a83c">
+        <File Id="Microsoft.Extensions.Configuration.CommandLine.dll" Name="Microsoft.Extensions.Configuration.CommandLine.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Configuration.CommandLine.dll" />
+      </Component>
+      <Component Id="Microsoft.EntityFrameworkCore.Relational.dll" Guid="93c0b0cc-b0db-41ba-b15e-1e160a6425cc">
+        <File Id="Microsoft.EntityFrameworkCore.Relational.dll" Name="Microsoft.EntityFrameworkCore.Relational.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.EntityFrameworkCore.Relational.dll" />
+      </Component>
+      <Component Id="Microsoft.EntityFrameworkCore.Sqlite.dll" Guid="b5939d55-419c-433a-994f-4b0dbf6b6de5">
+        <File Id="Microsoft.EntityFrameworkCore.Sqlite.dll" Name="Microsoft.EntityFrameworkCore.Sqlite.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.EntityFrameworkCore.Sqlite.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.FileProviders.Physical.dll" Guid="4818d8c5-dbc2-462f-938c-51caf3e39c23">
+        <File Id="Microsoft.Extensions.FileProviders.Physical.dll" Name="Microsoft.Extensions.FileProviders.Physical.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.FileProviders.Physical.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.Primitives.dll" Guid="c867e1c0-c4d8-403c-8f28-e43d118c1986">
+        <File Id="Microsoft.Extensions.Primitives.dll" Name="Microsoft.Extensions.Primitives.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Primitives.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.FileProviders.Abstractions.dll" Guid="7996d0f4-4d48-461f-8bba-4ac0e7c128b0">
+        <File Id="Microsoft.Extensions.FileProviders.Abstractions.dll" Name="Microsoft.Extensions.FileProviders.Abstractions.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.FileProviders.Abstractions.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.FileSystemGlobbing.dll" Guid="4479b1bd-4a9f-43cc-bbee-9827cce8a436">
+        <File Id="Microsoft.Extensions.FileSystemGlobbing.dll" Name="Microsoft.Extensions.FileSystemGlobbing.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.FileSystemGlobbing.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.DependencyInjection.Abstractions.dll" Guid="92e21c82-040e-441d-ab32-1b175c23693e">
+        <File Id="Microsoft.Extensions.DependencyInjection.Abstractions.dll" Name="Microsoft.Extensions.DependencyInjection.Abstractions.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+      </Component>
+      <Component Id="Microsoft.Bcl.AsyncInterfaces.dll" Guid="e3ab9812-2222-413e-b07e-88948957b9cf">
+        <File Id="Microsoft.Bcl.AsyncInterfaces.dll" Name="Microsoft.Bcl.AsyncInterfaces.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Bcl.AsyncInterfaces.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.Logging.Abstractions.dll" Guid="2b0aa0f0-cd06-4fbc-a79e-b3f15a7d5b8c">
+        <File Id="Microsoft.Extensions.Logging.Abstractions.dll" Name="Microsoft.Extensions.Logging.Abstractions.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Logging.Abstractions.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.Caching.Abstractions.dll" Guid="50846a87-f89f-4946-bd6d-3ea19b5b4fab">
+        <File Id="Microsoft.Extensions.Caching.Abstractions.dll" Name="Microsoft.Extensions.Caching.Abstractions.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Caching.Abstractions.dll" />
+      </Component>
+      <Component Id="Microsoft.EntityFrameworkCore.Abstractions.dll" Guid="7cbd28f9-7d98-4bec-a490-311884b5b695">
+        <File Id="Microsoft.EntityFrameworkCore.Abstractions.dll" Name="Microsoft.EntityFrameworkCore.Abstractions.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.EntityFrameworkCore.Abstractions.dll" />
+      </Component>
+      <Component Id="Microsoft.Bcl.HashCode.dll" Guid="78a27295-d356-4dec-8d7c-fff0e9b021f7">
+        <File Id="Microsoft.Bcl.HashCode.dll" Name="Microsoft.Bcl.HashCode.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Bcl.HashCode.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.DependencyInjection.dll" Guid="3a3f4a61-848d-4043-a047-6cb2cec8758e">
+        <File Id="Microsoft.Extensions.DependencyInjection.dll" Name="Microsoft.Extensions.DependencyInjection.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.DependencyInjection.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.Logging.dll" Guid="145da076-dd7b-41be-a1f7-9272fa41bb09">
+        <File Id="Microsoft.Extensions.Logging.dll" Name="Microsoft.Extensions.Logging.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Logging.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.Options.dll" Guid="4a78f38f-5faa-4232-88f6-092740b198c9">
+        <File Id="Microsoft.Extensions.Options.dll" Name="Microsoft.Extensions.Options.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Options.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.Caching.Memory.dll" Guid="b2d347fc-cf54-4592-bc7d-0c9d0db9dcd0">
+        <File Id="Microsoft.Extensions.Caching.Memory.dll" Name="Microsoft.Extensions.Caching.Memory.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Caching.Memory.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.Configuration.FileExtensions.dll" Guid="8cb98878-ef22-4d4c-b796-cdca13f7e74c">
+        <File Id="Microsoft.Extensions.Configuration.FileExtensions.dll" Name="Microsoft.Extensions.Configuration.FileExtensions.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Configuration.FileExtensions.dll" />
+      </Component>
+      <Component Id="Microsoft.DotNet.PlatformAbstractions.dll" Guid="35c7f15e-89d8-4be1-a2ce-5162943710cd">
+        <File Id="Microsoft.DotNet.PlatformAbstractions.dll" Name="Microsoft.DotNet.PlatformAbstractions.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.DotNet.PlatformAbstractions.dll" />
+      </Component>
+      <Component Id="Microsoft.Data.Sqlite.dll" Guid="798684f7-4060-4010-b6e2-cfaa0f1e8474">
+        <File Id="Microsoft.Data.Sqlite.dll" Name="Microsoft.Data.Sqlite.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Data.Sqlite.dll" />
+      </Component>
+      <Component Id="SQLitePCLRaw.core.dll" Guid="26ea78cd-e5bd-4e6e-8da7-1ea9a9f4babf">
+        <File Id="SQLitePCLRaw.core.dll" Name="SQLitePCLRaw.core.dll" Source="$(var.PRACT_OBS_TargetDir)SQLitePCLRaw.core.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.DependencyModel.dll" Guid="e1bd7a57-2b4a-456e-86af-545963b04c5a">
+        <File Id="Microsoft.Extensions.DependencyModel.dll" Name="Microsoft.Extensions.DependencyModel.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.DependencyModel.dll" />
+      </Component>
+      <Component Id="Microsoft.Extensions.Configuration.Binder.dll" Guid="deefc4dc-4872-4916-a82b-86dc427090f8">
+        <File Id="Microsoft.Extensions.Configuration.Binder.dll" Name="Microsoft.Extensions.Configuration.Binder.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Configuration.Binder.dll" />
+      </Component>
+      <Component Id="PRACT_OBS.deps.json" Guid="f85343d9-def0-4ce2-929c-2ee0fa01c08e">
+        <File Id="PRACT_OBS.deps.json" Name="PRACT_OBS.deps.json" Source="$(var.PRACT_OBS_TargetDir)PRACT_OBS.deps.json" />
+      </Component>
+      <Component Id="SQLitePCLRaw.batteries_v2.dll" Guid="22c44474-fe3e-44b7-a896-30605fc6e73e">
+        <File Id="SQLitePCLRaw.batteries_v2.dll" Name="SQLitePCLRaw.batteries_v2.dll" Source="$(var.PRACT_OBS_TargetDir)SQLitePCLRaw.batteries_v2.dll" />
+      </Component>
+      <Component Id="SQLitePCLRaw.nativelibrary.dll" Guid="3125db7b-681f-411c-b691-5e15c4209fe7">
+        <File Id="SQLitePCLRaw.nativelibrary.dll" Name="SQLitePCLRaw.nativelibrary.dll" Source="$(var.PRACT_OBS_TargetDir)SQLitePCLRaw.nativelibrary.dll" />
+      </Component>
+      <Component Id="SQLitePCLRaw.provider.dynamic_cdecl.dll" Guid="bd29b5f5-c8aa-4c4b-95fe-e654dc69c9ee">
+        <File Id="SQLitePCLRaw.provider.dynamic_cdecl.dll" Name="SQLitePCLRaw.provider.dynamic_cdecl.dll" Source="$(var.PRACT_OBS_TargetDir)SQLitePCLRaw.provider.dynamic_cdecl.dll" />
+      </Component>
+
+    </ComponentGroup>
+
+
+
+    <ComponentGroup Id="ProgramFilesFolder_WinX64Native" Directory="RuntimeX64Native" >
+      <Component Id="e_sqlcipher64.dll" Guid="af5d53bb-b266-43a7-9599-dd5fb7e5be6d">
+        <CreateFolder Directory ="RuntimeX64Native"></CreateFolder>
+        <File Id="e_sqlcipher64.dll" Name="e_sqlcipher.dll" Source="$(var.PRACT_OBS_TargetDir)runtimes\win-x64\native\e_sqlcipher.dll" />
+      </Component>
+    </ComponentGroup>
+    <ComponentGroup Id="ProgramFilesFolder_WinX86Native" Directory="RuntimeX86Native" >
+      <Component Id="e_sqlcipher86.dll" Guid="e72ac43d-2dbc-4d64-8445-647cfdd50df1">
+        <CreateFolder Directory ="RuntimeX64Native"></CreateFolder>
+        <File Id="e_sqlcipher86.dll" Name="e_sqlcipher.dll" Source="$(var.PRACT_OBS_TargetDir)runtimes\win-x86\native\e_sqlcipher.dll" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
 </Wix>
