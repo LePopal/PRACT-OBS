@@ -17,8 +17,8 @@
     <Product>PRACT OBS</Product>
     <PackageLicenseExpression></PackageLicenseExpression>
     <PackageLicenseFile>License.txt</PackageLicenseFile>
-    <PackageId>PRACT OBS</PackageId>
-    <AssemblyName>PRACT OBS</AssemblyName>
+    <PackageId>PRACT_OBS</PackageId>
+    <AssemblyName>PRACT_OBS</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
