@@ -16,7 +16,7 @@ namespace PRACT_OBS.Classes.Data
 												c.ImagePath
 											from djmdSongHistory as h
 											join djmdContent as c on h.ContentID = c.ID
-											join djmdArtist as a on c.ArtistID = a.ID
+											left join djmdArtist as a on c.ArtistID = a.ID
 											order by h.created_at desc
 											limit 2";
 	}

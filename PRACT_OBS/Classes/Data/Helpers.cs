@@ -37,8 +37,8 @@ namespace PRACT_OBS.Classes.Data
                         lt.ID = edr.GetString(0);
                         lt.created_at = edr.GetDateTime(1);
                         lt.FolderPath = edr.GetString(2).Replace('/', '\\');
-                        lt.Title = edr.GetString(3);
-                        lt.Artist = edr.GetString(4);
+                        lt.Title = (edr.IsDBNull(3) ? string.Empty : edr.GetString(3));
+                        lt.Artist = (edr.IsDBNull(4) ? string.Empty : edr.GetString(4));
                         lt.ImagePath = edr.GetString(5).Replace('/','\\');
                         lastTracks.Add(lt);
                     }

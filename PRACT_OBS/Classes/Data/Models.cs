@@ -21,7 +21,6 @@ namespace PRACT_OBS.Classes.Data
     public class SQLCipherDbContext : DbContext
     {
         public string Filename { get; set; }
-        //public DbSet<LastTrack> LastTracks { get; set; }
 
         public SQLCipherDbContext(string filename)
         {
