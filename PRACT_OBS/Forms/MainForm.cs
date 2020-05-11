@@ -17,7 +17,7 @@ namespace PRACT_OBS
         private Thread exportThread;
         public MainForm()
         {
-            this.Text = Assembly.Title;
+            this.Text = Application.ProductName;
             InitializeComponent();
             if (ProgramSettings.ShowDisclaimer)
             {

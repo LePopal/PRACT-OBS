@@ -20,9 +20,7 @@ namespace PRACT_OBS
         static void Main(string[] args)
         {
             Configuration = new ConfigurationBuilder()
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
                 .AddEnvironmentVariables()
-                //.AddUserSecrets("b70c8c37-ba6c-4c95-a2a3-be8eaae79d96")
                 .AddUserSecrets(System.Reflection.Assembly.GetExecutingAssembly())
                 .AddCommandLine(args)
                 .Build();
