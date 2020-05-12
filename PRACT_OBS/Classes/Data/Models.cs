@@ -16,6 +16,20 @@ namespace PRACT_OBS.Classes.Data
         public string Title { get; set; }
         public string Artist { get; set; }
         public string ImagePath { get; set; }
+        public int BPM { get; set; }
+        public int Rating { get; set; }
+        public int? ReleaseYear { get; set; }
+        public string ReleaseDate { get; set; }
+        public int Length { get; set; }
+        public int? ColorID { get; set; }
+        public string TrackComment { get; set; }
+        public string ColorName { get; set; }
+        public string AlbumName { get; set; }
+        public string LabelName { get; set; }
+        public string GenreName { get; set; }
+        public string KeyName { get; set; }
+        public string RemixerName { get; set; }
+        public string Message { get; set; }
     }
 
     public class SQLCipherDbContext : DbContext

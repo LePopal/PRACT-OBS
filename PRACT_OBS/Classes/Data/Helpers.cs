@@ -33,13 +33,43 @@ namespace PRACT_OBS.Classes.Data
                     lastTracks = new List<LastTrack>();
                     while (edr.Read())
                     {
+                        int i = 0;
                         LastTrack lt = new LastTrack();
-                        lt.ID = edr.GetString(0);
-                        lt.created_at = edr.GetDateTime(1);
-                        lt.FolderPath = edr.GetString(2).Replace('/', '\\');
-                        lt.Title = (edr.IsDBNull(3) ? string.Empty : edr.GetString(3));
-                        lt.Artist = (edr.IsDBNull(4) ? string.Empty : edr.GetString(4));
-                        lt.ImagePath = edr.GetString(5).Replace('/','\\');
+                        lt.ID = edr.GetString(i++);
+                        lt.created_at = edr.GetDateTime(i++);
+                        lt.FolderPath = edr.GetString(i++).Replace('/', '\\');
+                        lt.Title = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
+                        i++;
+                        lt.Artist = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
+                        i++;
+                        lt.ImagePath = edr.GetString(i++).Replace('/','\\');
+                        lt.BPM = (edr.IsDBNull(i) ? 0 : edr.GetInt32(i));
+                        i++;
+                        lt.Rating = (edr.IsDBNull(i) ? 0 : edr.GetInt32(i));
+                        i++;
+                        lt.ReleaseYear = (edr.IsDBNull(i) ? (int?)null : edr.GetInt32(i));
+                        i++;
+                        lt.ReleaseDate= (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
+                        i++;
+                        lt.Length = edr.GetInt32(i++);
+                        lt.ColorID = (edr.IsDBNull(i) ? (int?)null : edr.GetInt32(i));
+                        i++;
+                        lt.TrackComment = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
+                        i++;
+                        lt.ColorName = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
+                        i++;
+                        lt.AlbumName = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
+                        i++;
+                        lt.LabelName = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
+                        i++;
+                        lt.GenreName = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
+                        i++;
+                        lt.KeyName = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
+                        i++;
+                        lt.RemixerName = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
+                        i++;
+                        lt.Message = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
+                        
                         lastTracks.Add(lt);
                     }
                 }
