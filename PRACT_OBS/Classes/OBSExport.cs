@@ -204,6 +204,8 @@ namespace PRACT_OBS.Classes
         private const string ARTIST_FILENAME = "Artist.txt";
         private const string TITLE_FILENAME = "Title.txt";
         private const string ARTIST_TITLE_FILENAME = "ArtistTitle.txt";
+        private const string CUSTOM_FILENAME = "PRACT_OBS_Custom_Export.txt";
+        private const string JSON_FILENAME = "PRACT_OBS.json";
         private static string _OutputFolder = string.Empty;
     }
 }
