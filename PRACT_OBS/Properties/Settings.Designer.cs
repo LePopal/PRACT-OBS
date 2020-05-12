@@ -130,5 +130,29 @@ namespace PRACT_OBS.Properties {
                 this["DefaultArtwork"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string CustomExportFormat {
+            get {
+                return ((string)(this["CustomExportFormat"]));
+            }
+            set {
+                this["CustomExportFormat"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CustomExportEnabled {
+            get {
+                return ((bool)(this["CustomExportEnabled"]));
+            }
+            set {
+                this["CustomExportEnabled"] = value;
+            }
+        }
     }
 }

@@ -21,15 +21,15 @@ namespace PRACT_OBS.Classes.Helpers
             get
             {
                 // If undefined, the OutputFolder will be the MyDocuments directory
-                if (Settings.Default.OutputFolder == string.Empty)
+                if (settings.OutputFolder == string.Empty)
                     return Paths.MyDocumentsFolder;
                 else
-                    return Settings.Default.OutputFolder.Trim();
+                    return settings.OutputFolder.Trim();
             }
             set
             {
-                Settings.Default.OutputFolder = value;
-                Settings.Default.Save();
+                settings.OutputFolder = value;
+                settings.Save();
             }
         }
 
@@ -39,7 +39,7 @@ namespace PRACT_OBS.Classes.Helpers
             {
                 // If not set, the program will try to mine for the database passphrase
                 // otherwise it will use the key stored in the config file
-                if (Settings.Default.PassphraseToMine)
+                if (settings.PassphraseToMine)
                 {
                     if (EncryptionKey != string.Empty)
                     {
@@ -48,13 +48,13 @@ namespace PRACT_OBS.Classes.Helpers
                     return EncryptionKey;
                 }
                 else
-                    return Settings.Default.Key;
+                    return settings.Key;
 
                 }
             set
             {
-                Settings.Default.Key = value;
-                Settings.Default.Save();
+                settings.Key = value;
+                settings.Save();
             }
         }
 
@@ -63,12 +63,12 @@ namespace PRACT_OBS.Classes.Helpers
             get
             {
                 return
-                      Settings.Default.Timer;
+                      settings.Timer;
             }
             set
             {
-                Settings.Default.Timer = value;
-                Settings.Default.Save();
+                settings.Timer = value;
+                settings.Save();
             }
         }
         public static bool ShowDisclaimer
@@ -76,12 +76,12 @@ namespace PRACT_OBS.Classes.Helpers
             get
             {
                 return
-                      Settings.Default.ShowDisclaimerOnStartup;
+                      settings.ShowDisclaimerOnStartup;
             }
             set
             {
-                Settings.Default.ShowDisclaimerOnStartup = value;
-                Settings.Default.Save();
+                settings.ShowDisclaimerOnStartup = value;
+                settings.Save();
             }
         }
 
@@ -90,12 +90,12 @@ namespace PRACT_OBS.Classes.Helpers
             get
             {
                 return
-                      Settings.Default.OnScreenDuration;
+                      settings.OnScreenDuration;
             }
             set
             {
-                Settings.Default.OnScreenDuration = value;
-                Settings.Default.Save();
+                settings.OnScreenDuration = value;
+                settings.Save();
             }
         }
 
@@ -103,13 +103,13 @@ namespace PRACT_OBS.Classes.Helpers
         {
             get
             {
-                return Settings.Default.PassphraseToMine;
+                return settings.PassphraseToMine;
             }
             set
             {
-                Settings.Default.PassphraseToMine = value;
-                Settings.Default.Key = PASSPHRASE_TO_MINE;
-                Settings.Default.Save();
+                settings.PassphraseToMine = value;
+                settings.Key = PASSPHRASE_TO_MINE;
+                settings.Save();
             }
         }
 
@@ -117,27 +117,52 @@ namespace PRACT_OBS.Classes.Helpers
         {
             get
             {
-                return Settings.Default.ArtistTitleSeparator;
+                return settings.ArtistTitleSeparator;
             }
             set
             {
-                Settings.Default.ArtistTitleSeparator = value;
-                Settings.Default.Save();
+                settings.ArtistTitleSeparator = value;
+                settings.Save();
             }
         }
         public static string DefaultArtwork
         {
             get
             {
-                return Settings.Default.DefaultArtwork;
+                return settings.DefaultArtwork;
             }
             set
             {
-                Settings.Default.DefaultArtwork = value;
-                Settings.Default.Save();
+                settings.DefaultArtwork = value;
+                settings.Save();
             }
         }
 
+        public static string CustomExportFormat
+        {
+            get
+            {
+                return settings.CustomExportFormat;
+            }
+            set
+            {
+                settings.CustomExportFormat = value;
+                settings.Save();
+            }
+        }
+
+        public static bool CustomExportEnabled
+        {
+            get
+            {
+                return settings.CustomExportEnabled;
+            }
+            set
+            {
+                settings.CustomExportEnabled = value;
+                settings.Save();
+            }
+        }
         private static void MineKey()
         {
             // Load App.asar and clean/stripe it to better find what we're looking for
@@ -167,5 +192,12 @@ namespace PRACT_OBS.Classes.Helpers
 
         private static string _EncryptionPassPhrase { get; set; }
         private static string EncryptionKey { get; set; }
+        private static Settings settings
+        {
+            get
+            {
+                return Settings.Default;
+            }
+        }
     }
 }
