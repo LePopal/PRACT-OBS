@@ -11,6 +11,24 @@ namespace PRACT_OBS.Classes
 {
     public static class OBSExport
     {
+        public const string TOKEN_ID = "%ID%";
+        public const string TOKEN_FOLDER_PATH = "%FOLDERPATH%";
+        public const string TOKEN_ARTIST = "%ARTIST%";
+        public const string TOKEN_TITLE = "%TITLE%";
+        public const string TOKEN_IMAGE_PATH = "%IMAGEPATH%";
+        public const string TOKEN_BPM = "%BPM%";
+        public const string TOKEN_RATING = "%RATING%";
+        public const string TOKEN_RELEASE_YEAR = "%YEAR%";
+        public const string TOKEN_LENGTH = "%LENGTH%";
+        public const string TOKEN_COLOR_ID = "%COLORID%";
+        public const string TOKEN_COLOR_NAME = "%COLORNAME%";
+        public const string TOKEN_COMMENT = "%COMMENT%";
+        public const string TOKEN_ALBUM = "%ALBUM%";
+        public const string TOKEN_LABEL = "%LABEL%";
+        public const string TOKEN_GENRE = "%GENRE%";
+        public const string TOKEN_KEY = "%KEY%";
+        public const string TOKEN_REMIXER = "%REMIXER%";
+        public const string TOKEN_MESSAGE = "%MESSAGE%";
         public static void ExportLastTrack(LastTrack LastTrack)
         {
             // Check if it's time to remove what's on screen or not
@@ -182,6 +200,34 @@ namespace PRACT_OBS.Classes
                 return ProgramSettings.OnScreenDuration == 0 ? int.MaxValue : ProgramSettings.OnScreenDuration;
             }
         }
+
+        private static string CustomFormat(LastTrack lastTrack)
+        {
+            if (ProgramSettings.CustomExportEnabled)
+
+                return ProgramSettings.CustomExportFormat
+                            .Replace(TOKEN_ID, lastTrack.ID, StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_FOLDER_PATH, lastTrack.FolderPath, StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_ARTIST, lastTrack.Artist, StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_TITLE, lastTrack.Title, StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_IMAGE_PATH, lastTrack.ImagePath, StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_BPM, lastTrack.BPM.ToString(), StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_RATING, lastTrack.Rating.ToString(), StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_RELEASE_YEAR, lastTrack.ReleaseYear.ToString(), StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_LENGTH, lastTrack.Length.ToString(), StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_COLOR_ID, lastTrack.ColorID.ToString(), StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_COLOR_NAME, lastTrack.ColorName, StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_COMMENT, lastTrack.TrackComment, StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_ALBUM, lastTrack.AlbumName, StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_LABEL, lastTrack.LabelName, StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_GENRE, lastTrack.GenreName, StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_KEY, lastTrack.KeyName, StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_REMIXER, lastTrack.RemixerName, StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_MESSAGE, lastTrack.Message, StringComparison.InvariantCultureIgnoreCase);
+            else
+                return null;
+        }
+
         private static string PreviousArtist { get; set; }
         private static string PreviousTitle { get; set; }
         public static DateTime PreviousUpdate { get; set; }

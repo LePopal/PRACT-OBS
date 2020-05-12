@@ -30,7 +30,8 @@ namespace PRACT_OBS
             txtPooling.Text = ProgramSettings.Timer.ToString();
             txtArtistTitleSeparator.Text = ProgramSettings.ArtistTitleSeparator;
             txtDefaultArtwork.Text = ProgramSettings.DefaultArtwork;
-            
+            txtCustomFormat.Text = ProgramSettings.CustomExportFormat;
+            chkCustomExport.Checked = ProgramSettings.CustomExportEnabled;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -82,6 +83,17 @@ namespace PRACT_OBS
             else
                 ProgramSettings.DefaultArtwork = txtDefaultArtwork.Text.Trim();
 
+            if(!CheckCustomExport())
+            {
+                Messages.ErrorMessage("Custom Export Format malformed. Please correct it.");
+                return;
+            }
+            else
+            {
+                ProgramSettings.CustomExportEnabled = chkCustomExport.Checked;
+                ProgramSettings.CustomExportFormat = txtCustomFormat.Text;
+            }    
+
             this.Close();
         }
             
@@ -111,11 +123,17 @@ namespace PRACT_OBS
             return (int.TryParse(i, out int newValue)) && (newValue >= 0);
         }
 
+        private bool CheckCustomExport()
+        {
+            return true; // Todo
+        }
+
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
+        
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             if (keyData == Keys.Escape)
@@ -126,6 +144,7 @@ namespace PRACT_OBS
             return base.ProcessCmdKey(ref msg, keyData);
         }
 
+        
         private void OptionsForm_KeyDown(object sender, KeyEventArgs e)
         {
 

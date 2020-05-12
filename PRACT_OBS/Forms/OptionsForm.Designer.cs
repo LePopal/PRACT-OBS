@@ -48,6 +48,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.fileDefaultArtwork = new System.Windows.Forms.OpenFileDialog();
             this.btnClearDefaultArtwork = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtCustomFormat = new System.Windows.Forms.TextBox();
+            this.chkCustomExport = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -97,7 +100,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(422, 251);
+            this.btnOK.Location = new System.Drawing.Point(424, 336);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(112, 34);
             this.btnOK.TabIndex = 4;
@@ -107,7 +110,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(657, 251);
+            this.btnCancel.Location = new System.Drawing.Point(659, 336);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(112, 34);
             this.btnCancel.TabIndex = 4;
@@ -219,13 +222,42 @@
             this.btnClearDefaultArtwork.UseVisualStyleBackColor = true;
             this.btnClearDefaultArtwork.Click += new System.EventHandler(this.btnClearDefaultArtwork_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label7.Location = new System.Drawing.Point(13, 241);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(141, 25);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Custom Format";
+            // 
+            // txtCustomFormat
+            // 
+            this.txtCustomFormat.Location = new System.Drawing.Point(218, 241);
+            this.txtCustomFormat.Name = "txtCustomFormat";
+            this.txtCustomFormat.Size = new System.Drawing.Size(961, 31);
+            this.txtCustomFormat.TabIndex = 1;
+            // 
+            // chkCustomExport
+            // 
+            this.chkCustomExport.AutoSize = true;
+            this.chkCustomExport.Location = new System.Drawing.Point(1185, 245);
+            this.chkCustomExport.Name = "chkCustomExport";
+            this.chkCustomExport.Size = new System.Drawing.Size(22, 21);
+            this.chkCustomExport.TabIndex = 6;
+            this.chkCustomExport.UseVisualStyleBackColor = true;
+            // 
             // OptionsForm
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(1220, 293);
+            this.ClientSize = new System.Drawing.Size(1220, 382);
+            this.Controls.Add(this.chkCustomExport);
+            this.Controls.Add(this.txtCustomFormat);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.btnClearDefaultArtwork);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtDefaultArtwork);
@@ -276,5 +308,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.OpenFileDialog fileDefaultArtwork;
         private System.Windows.Forms.Button btnClearDefaultArtwork;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtCustomFormat;
+        private System.Windows.Forms.CheckBox chkCustomExport;
     }
 }

@@ -147,6 +147,8 @@ namespace PRACT_OBS.Classes.Helpers
             set
             {
                 settings.CustomExportFormat = value;
+                if (settings.CustomExportEnabled && string.IsNullOrWhiteSpace(value))
+                    settings.CustomExportEnabled = false;
                 settings.Save();
             }
         }
