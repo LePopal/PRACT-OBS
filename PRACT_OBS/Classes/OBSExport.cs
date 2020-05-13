@@ -30,6 +30,7 @@ namespace PRACT_OBS.Classes
         public const string TOKEN_KEY = "%KEY%";
         public const string TOKEN_REMIXER = "%REMIXER%";
         public const string TOKEN_MESSAGE = "%MESSAGE%";
+
         public static void ExportLastTrack(LastTrack LastTrack)
         {
             // Check if it's time to remove what's on screen or not
@@ -44,7 +45,7 @@ namespace PRACT_OBS.Classes
                 if (LastTrack.Artist != PreviousArtist)
                 {
                     rewriteArtistTitleFile = true;
-                    WriteMetaData(Path.Combine(OutputFolder, ARTIST_FILENAME), LastTrack.Artist);
+                    WriteMetaData(GetPath(ARTIST_FILENAME), LastTrack.Artist);
                     PreviousArtist = LastTrack.Artist;
                     PreviousUpdate = DateTime.Now;
                     IsArtistFileEmpty = false;
@@ -54,7 +55,7 @@ namespace PRACT_OBS.Classes
                     if (!IsArtistFileEmpty && timesUp)
                     {
                         rewriteArtistTitleFile = true;
-                        WriteMetaData(Path.Combine(OutputFolder, ARTIST_FILENAME), string.Empty);
+                        WriteMetaData(GetPath(ARTIST_FILENAME), string.Empty);
                         IsArtistFileEmpty = true;
                     }
                 }
@@ -63,7 +64,7 @@ namespace PRACT_OBS.Classes
                 if (LastTrack.Title != PreviousTitle)
                 {
                     rewriteArtistTitleFile = true;
-                    WriteMetaData(Path.Combine(OutputFolder, TITLE_FILENAME), LastTrack.Title);
+                    WriteMetaData(GetPath(TITLE_FILENAME), LastTrack.Title);
                     PreviousTitle = LastTrack.Title;
                     PreviousUpdate = DateTime.Now;
                     IsTitleFileEmpty = false;
@@ -73,7 +74,7 @@ namespace PRACT_OBS.Classes
                     if (!IsTitleFileEmpty && timesUp)
                     {
                         rewriteArtistTitleFile = true;
-                        WriteMetaData(Path.Combine(OutputFolder, TITLE_FILENAME), string.Empty);
+                        WriteMetaData(GetPath(TITLE_FILENAME), string.Empty);
                         IsTitleFileEmpty = true;
                     }
                 }
@@ -81,17 +82,15 @@ namespace PRACT_OBS.Classes
                 // Export the Artist+Title
                 if (rewriteArtistTitleFile)
                 {
-                    WriteMetaData(Path.Combine(OutputFolder, ARTIST_TITLE_FILENAME),
+                    WriteMetaData(GetPath(ARTIST_TITLE_FILENAME),
                         string.Format("{0} {1} {2} {1}{1}{1} ", LastTrack.Artist, ProgramSettings.ArtistTitleSeparator, LastTrack.Title));
                     if (ProgramSettings.CustomExportEnabled)
                     {
-                        WriteMetaData(Path.Combine(OutputFolder, CUSTOM_FILENAME),
-                            CustomFormat(LastTrack));
+                        WriteMetaData(GetPath(CUSTOM_FILENAME), CustomFormat(LastTrack));
                     }
                     if (ProgramSettings.JSONExportEnabled)
                     {
-                        WriteMetaData(Path.Combine(OutputFolder, JSON_FILENAME),
-    JSONFormat(LastTrack));
+                        WriteMetaData(GetPath(JSON_FILENAME), JSONFormat(LastTrack));
                     }
                     PreviousUpdate = DateTime.Now;
                 }
@@ -99,8 +98,8 @@ namespace PRACT_OBS.Classes
                 {
                     if (timesUp)
                     {
-                        WriteMetaData(Path.Combine(OutputFolder, ARTIST_TITLE_FILENAME), string.Empty);
-                        WriteMetaData(Path.Combine(OutputFolder, CUSTOM_FILENAME), string.Empty);
+                        WriteMetaData(GetPath(ARTIST_TITLE_FILENAME), string.Empty);
+                        WriteMetaData(GetPath(CUSTOM_FILENAME), string.Empty);
                     }
                 }
 
@@ -122,7 +121,7 @@ namespace PRACT_OBS.Classes
                     if (artworkMD5 != PreviousArtwork)
                     {
                         File.Copy(artworkFile,
-                                Path.Combine(OutputFolder, ARTWORK_FILENAME),
+                                GetPath(ARTWORK_FILENAME),
                                 true);
                         PreviousArtwork = artworkMD5;
                         PreviousUpdate = DateTime.Now;
@@ -132,14 +131,14 @@ namespace PRACT_OBS.Classes
                     {
                         if (!IsArtworkFileEmpty && timesUp)
                         {
-                            File.Delete(Path.Combine(OutputFolder, ARTWORK_FILENAME));
+                            File.Delete(GetPath(ARTWORK_FILENAME));
                             IsArtworkFileEmpty = true;
                         }
                     }
                 }
                 else
                 {
-                    File.Delete(Path.Combine(OutputFolder, ARTWORK_FILENAME));
+                    File.Delete(GetPath(ARTWORK_FILENAME));
                     PreviousUpdate = DateTime.Now;
                     IsArtworkFileEmpty = true;
                 }
@@ -244,6 +243,11 @@ namespace PRACT_OBS.Classes
         private static string JSONFormat(LastTrack lastTrack)
         {
             return JsonSerializer.Serialize(lastTrack);
+        }
+
+        private static string GetPath(string fileName)
+        {
+            return Path.Combine(OutputFolder, fileName);
         }
         private static string PreviousArtist { get; set; }
         private static string PreviousTitle { get; set; }
