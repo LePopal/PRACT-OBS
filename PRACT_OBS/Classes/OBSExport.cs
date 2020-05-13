@@ -242,7 +242,10 @@ namespace PRACT_OBS.Classes
 
         private static string JSONFormat(LastTrack lastTrack)
         {
-            return JsonSerializer.Serialize(lastTrack);
+            JsonSerializerOptions options = new JsonSerializerOptions();
+            options.WriteIndented = true;
+
+            return JsonSerializer.Serialize(lastTrack, options);
         }
 
         private static string GetPath(string fileName)
