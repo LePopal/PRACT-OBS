@@ -30,9 +30,12 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="CustomExportFormat" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">%ID% %FOLDERPATH% %ARTIST% %TITLE% %IMAGEPATH% %BPM% %RATING% %YEAR% %LENGTH% %COLORID% %COLORNAME% %COMMENT% %ALBUM% %LABEL% %GENRE% %KEY%  %REMIXER%  %MESSAGE%</Value>
     </Setting>
     <Setting Name="CustomExportEnabled" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="JSONExportEnabled" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>

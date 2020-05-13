@@ -33,6 +33,11 @@ namespace PRACT_OBS.Classes.Data
                     {
                         command.CommandText = $"PRAGMA cipher_default_compatibility = 4;";
                         command.ExecuteNonQuery();
+                        //command.CommandText = $"PRAGMA read_uncommitted = true;";
+                        //command.ExecuteNonQuery();
+                        //command.CommandText = $"PRAGMA synchronous = OFF;";
+                        //command.CommandText = $"PRAGMA query_only = ON;";
+                        //command.ExecuteNonQuery();
                     }
                     context.Database.EnsureCreated();
                     _MasterDBConection = connection;

@@ -32,6 +32,7 @@ namespace PRACT_OBS
             txtDefaultArtwork.Text = ProgramSettings.DefaultArtwork;
             txtCustomFormat.Text = ProgramSettings.CustomExportFormat;
             chkCustomExport.Checked = ProgramSettings.CustomExportEnabled;
+            txtCustomFormat.Enabled = chkCustomExport.Checked;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -74,7 +75,10 @@ namespace PRACT_OBS
             }
             else
                 ProgramSettings.Timer = int.Parse(txtPooling.Text);
+
             ProgramSettings.ArtistTitleSeparator = txtArtistTitleSeparator.Text;
+            ProgramSettings.JSONExportEnabled = chkJSON.Checked;
+
             if (!string.IsNullOrWhiteSpace(txtDefaultArtwork.Text)
                 && !File.Exists(txtDefaultArtwork.Text))
             {
@@ -92,7 +96,7 @@ namespace PRACT_OBS
             {
                 ProgramSettings.CustomExportEnabled = chkCustomExport.Checked;
                 ProgramSettings.CustomExportFormat = txtCustomFormat.Text;
-            }    
+            }
 
             this.Close();
         }
@@ -176,6 +180,11 @@ namespace PRACT_OBS
             outputFolderDialog.SelectedPath = txtOutputFolder.Text;
             outputFolderDialog.ShowDialog();
             txtOutputFolder.Text = outputFolderDialog.SelectedPath;
+        }
+
+        private void chkCustomExport_CheckedChanged(object sender, EventArgs e)
+        {
+            txtCustomFormat.Enabled = ((CheckBox)sender).Checked;
         }
     }
 }

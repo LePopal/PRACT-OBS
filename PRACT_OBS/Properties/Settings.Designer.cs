@@ -133,7 +133,9 @@ namespace PRACT_OBS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("%ID% %FOLDERPATH% %ARTIST% %TITLE% %IMAGEPATH% %BPM% %RATING% %YEAR% %LENGTH% %CO" +
+            "LORID% %COLORNAME% %COMMENT% %ALBUM% %LABEL% %GENRE% %KEY%  %REMIXER%  %MESSAGE%" +
+            "")]
         public string CustomExportFormat {
             get {
                 return ((string)(this["CustomExportFormat"]));
@@ -152,6 +154,18 @@ namespace PRACT_OBS.Properties {
             }
             set {
                 this["CustomExportEnabled"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool JSONExportEnabled {
+            get {
+                return ((bool)(this["JSONExportEnabled"]));
+            }
+            set {
+                this["JSONExportEnabled"] = value;
             }
         }
     }

@@ -51,6 +51,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtCustomFormat = new System.Windows.Forms.TextBox();
             this.chkCustomExport = new System.Windows.Forms.CheckBox();
+            this.chkJSON = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -178,7 +179,7 @@
             // 
             this.txtArtistTitleSeparator.Location = new System.Drawing.Point(218, 164);
             this.txtArtistTitleSeparator.Name = "txtArtistTitleSeparator";
-            this.txtArtistTitleSeparator.Size = new System.Drawing.Size(990, 31);
+            this.txtArtistTitleSeparator.Size = new System.Drawing.Size(816, 31);
             this.txtArtistTitleSeparator.TabIndex = 1;
             // 
             // btnDefaultArtwork
@@ -235,8 +236,9 @@
             // txtCustomFormat
             // 
             this.txtCustomFormat.Location = new System.Drawing.Point(218, 241);
+            this.txtCustomFormat.Multiline = true;
             this.txtCustomFormat.Name = "txtCustomFormat";
-            this.txtCustomFormat.Size = new System.Drawing.Size(961, 31);
+            this.txtCustomFormat.Size = new System.Drawing.Size(961, 89);
             this.txtCustomFormat.TabIndex = 1;
             // 
             // chkCustomExport
@@ -247,6 +249,18 @@
             this.chkCustomExport.Size = new System.Drawing.Size(22, 21);
             this.chkCustomExport.TabIndex = 6;
             this.chkCustomExport.UseVisualStyleBackColor = true;
+            this.chkCustomExport.CheckedChanged += new System.EventHandler(this.chkCustomExport_CheckedChanged);
+            // 
+            // chkJSON
+            // 
+            this.chkJSON.AutoSize = true;
+            this.chkJSON.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.chkJSON.Location = new System.Drawing.Point(1040, 166);
+            this.chkJSON.Name = "chkJSON";
+            this.chkJSON.Size = new System.Drawing.Size(146, 29);
+            this.chkJSON.TabIndex = 7;
+            this.chkJSON.Text = "JSON Export";
+            this.chkJSON.UseVisualStyleBackColor = true;
             // 
             // OptionsForm
             // 
@@ -255,6 +269,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1220, 382);
+            this.Controls.Add(this.chkJSON);
             this.Controls.Add(this.chkCustomExport);
             this.Controls.Add(this.txtCustomFormat);
             this.Controls.Add(this.label7);
@@ -311,5 +326,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtCustomFormat;
         private System.Windows.Forms.CheckBox chkCustomExport;
+        private System.Windows.Forms.CheckBox chkJSON;
     }
 }

@@ -41,7 +41,7 @@ namespace PRACT_OBS.Classes.Data
 											c.DeliveryComment as Message
 										from djmdSongHistory as h
 										join djmdContent as c on h.ContentID = c.ID
-										join djmdColor as co on c.ColorID=co.id
+										left join djmdColor as co on c.ColorID=co.id
 										left join djmdArtist as a on c.ArtistID = a.ID
 										left join djmdArtist as rmx on c.RemixerID = rmx.ID
 										left join djmdAlbum as al on c.AlbumID = al.ID

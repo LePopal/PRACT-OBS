@@ -165,6 +165,19 @@ namespace PRACT_OBS.Classes.Helpers
                 settings.Save();
             }
         }
+
+        public static bool JSONExportEnabled
+        {
+            get
+            {
+                return settings.JSONExportEnabled;
+            }
+            set
+            {
+                settings.JSONExportEnabled = value;
+                settings.Save();
+            }
+        }
         private static void MineKey()
         {
             // Load App.asar and clean/stripe it to better find what we're looking for

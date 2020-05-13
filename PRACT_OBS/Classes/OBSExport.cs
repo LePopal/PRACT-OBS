@@ -6,6 +6,7 @@ using System.IO;
 using System.Text;
 using System.Security.Cryptography;
 using System.Diagnostics;
+using System.Text.Json;
 
 namespace PRACT_OBS.Classes
 {
@@ -78,17 +79,28 @@ namespace PRACT_OBS.Classes
                 }
 
                 // Export the Artist+Title
-                if(rewriteArtistTitleFile)
+                if (rewriteArtistTitleFile)
                 {
                     WriteMetaData(Path.Combine(OutputFolder, ARTIST_TITLE_FILENAME),
                         string.Format("{0} {1} {2} {1}{1}{1} ", LastTrack.Artist, ProgramSettings.ArtistTitleSeparator, LastTrack.Title));
+                    if (ProgramSettings.CustomExportEnabled)
+                    {
+                        WriteMetaData(Path.Combine(OutputFolder, CUSTOM_FILENAME),
+                            CustomFormat(LastTrack));
+                    }
+                    if (ProgramSettings.JSONExportEnabled)
+                    {
+                        WriteMetaData(Path.Combine(OutputFolder, JSON_FILENAME),
+    JSONFormat(LastTrack));
+                    }
                     PreviousUpdate = DateTime.Now;
                 }
                 else
                 {
-                    if(timesUp)
+                    if (timesUp)
                     {
                         WriteMetaData(Path.Combine(OutputFolder, ARTIST_TITLE_FILENAME), string.Empty);
+                        WriteMetaData(Path.Combine(OutputFolder, CUSTOM_FILENAME), string.Empty);
                     }
                 }
 
@@ -118,7 +130,7 @@ namespace PRACT_OBS.Classes
                     }
                     else
                     {
-                        if(!IsArtworkFileEmpty && timesUp)
+                        if (!IsArtworkFileEmpty && timesUp)
                         {
                             File.Delete(Path.Combine(OutputFolder, ARTWORK_FILENAME));
                             IsArtworkFileEmpty = true;
@@ -160,6 +172,7 @@ namespace PRACT_OBS.Classes
             IsTitleFileEmpty = false;
             IsArtworkFileEmpty = false;
         }
+
         /// <summary>
         /// Gets the MD5 checksum of a given file. Usefull to check if the file is the same than another one
         /// </summary>
@@ -228,6 +241,10 @@ namespace PRACT_OBS.Classes
                 return null;
         }
 
+        private static string JSONFormat(LastTrack lastTrack)
+        {
+            return JsonSerializer.Serialize(lastTrack);
+        }
         private static string PreviousArtist { get; set; }
         private static string PreviousTitle { get; set; }
         public static DateTime PreviousUpdate { get; set; }
@@ -250,7 +267,7 @@ namespace PRACT_OBS.Classes
         private const string ARTIST_FILENAME = "Artist.txt";
         private const string TITLE_FILENAME = "Title.txt";
         private const string ARTIST_TITLE_FILENAME = "ArtistTitle.txt";
-        private const string CUSTOM_FILENAME = "PRACT_OBS_Custom_Export.txt";
+        private const string CUSTOM_FILENAME = "Custom_Export.txt";
         private const string JSON_FILENAME = "PRACT_OBS.json";
         private static string _OutputFolder = string.Empty;
     }
