@@ -8,6 +8,7 @@ using System.Threading;
 using System.Diagnostics;
 using System.Windows.Forms.Design;
 using System.IO;
+using System.Collections.Generic;
 
 namespace PRACT_OBS
 {
@@ -15,6 +16,9 @@ namespace PRACT_OBS
     {
         private bool stopExport = false;
         private Thread exportThread;
+        private LastTrack lt = null;
+        private List<LastTrack> localHistory = new List<LastTrack>();
+        
         public MainForm()
         {
             this.Text = Application.ProductName;
@@ -28,39 +32,23 @@ namespace PRACT_OBS
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-
-
-            ProgramSettings.Key = ProgramSettings.Key;
             StartExport();
             while (exportThread.IsAlive)
             {
                 Application.DoEvents();
             }
-
         }
 
         private void ContinuousExport()
         {
-            string key = ProgramSettings.Key;
-            MasterDB masterDB = null;
-            try
-            {
-                masterDB = new MasterDB(Paths.DbPath, key);
-            }
-            catch (FileNotFoundException e)
-            {
-                Messages.ErrorMessage(e.Message);
-                Messages.ErrorMessage("Exiting program...");
-                this.Close();
-            }
-            Helpers h = new Helpers(masterDB);
-
             while (!IsDisposed && !stopExport)
             {
-                LastTrack lt = h.GetLastTrack();
+                lt = h.GetLastTrack();
+                localHistory.Add(lt);
                 if (lt != null)
                 {
-                    OBSExport.ExportLastTrack(lt);
+                    if(chkContinuousExport.Checked)
+                        OBSExport.ExportLastTrack(lt);
                     txtArtist.Invoke((Action)delegate
                     {
                         txtArtist.Text = lt.Artist;
@@ -109,6 +97,10 @@ namespace PRACT_OBS
             stopExport = false;
         }
 
+        private void OneTimeExport()
+        {
+            OBSExport.ExportLastTrack(h.GetLastTrack());
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             StopExport();
@@ -218,6 +210,46 @@ namespace PRACT_OBS
             }
             return base.ProcessCmdKey(ref msg, keyData);
 
+        }
+
+        private string key
+        {
+            get
+            {
+                return ProgramSettings.Key;
+            }
+        }
+        private MasterDB masterDB
+        {
+            get
+            {
+                if(_MasterDB == null)
+                    _MasterDB = new MasterDB(Paths.DbPath, key);
+                return _MasterDB;
+            }
+        }
+
+        private Helpers h
+        {
+            get
+            {
+                if(_helper==null)
+                    _helper = new Helpers(masterDB);
+                return _helper;
+            }
+        }
+
+        private MasterDB _MasterDB = null;
+        private Helpers _helper = null;
+
+        private void chkContinuousExport_CheckedChanged(object sender, EventArgs e)
+        {
+            btnPush.Enabled = !((CheckBox)sender).Checked;
+        }
+
+        private void btnPush_Click(object sender, EventArgs e)
+        {
+            OneTimeExport();
         }
     }
 }

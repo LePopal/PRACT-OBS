@@ -74,6 +74,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.picArtwork = new System.Windows.Forms.PictureBox();
+            this.btnPush = new System.Windows.Forms.Button();
+            this.chkContinuousExport = new System.Windows.Forms.CheckBox();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -87,7 +89,7 @@
             // 
             this.btnStart.Image = ((System.Drawing.Image)(resources.GetObject("btnStart.Image")));
             this.btnStart.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStart.Location = new System.Drawing.Point(179, 3);
+            this.btnStart.Location = new System.Drawing.Point(12, 3);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(160, 55);
             this.btnStart.TabIndex = 1;
@@ -363,7 +365,7 @@
             this.btnStop.Enabled = false;
             this.btnStop.Image = ((System.Drawing.Image)(resources.GetObject("btnStop.Image")));
             this.btnStop.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStop.Location = new System.Drawing.Point(458, 3);
+            this.btnStop.Location = new System.Drawing.Point(178, 5);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(157, 55);
             this.btnStop.TabIndex = 3;
@@ -395,6 +397,8 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.btnPush);
+            this.splitContainer1.Panel2.Controls.Add(this.chkContinuousExport);
             this.splitContainer1.Panel2.Controls.Add(this.btnStart);
             this.splitContainer1.Panel2.Controls.Add(this.btnStop);
             this.splitContainer1.Size = new System.Drawing.Size(803, 384);
@@ -502,6 +506,31 @@
             this.picArtwork.TabIndex = 0;
             this.picArtwork.TabStop = false;
             // 
+            // btnPush
+            // 
+            this.btnPush.Enabled = false;
+            this.btnPush.Location = new System.Drawing.Point(341, 5);
+            this.btnPush.Name = "btnPush";
+            this.btnPush.Size = new System.Drawing.Size(157, 55);
+            this.btnPush.TabIndex = 6;
+            this.btnPush.Text = "Push";
+            this.btnPush.UseVisualStyleBackColor = true;
+            this.btnPush.Click += new System.EventHandler(this.btnPush_Click);
+            // 
+            // chkContinuousExport
+            // 
+            this.chkContinuousExport.AutoSize = true;
+            this.chkContinuousExport.Checked = true;
+            this.chkContinuousExport.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkContinuousExport.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.chkContinuousExport.Location = new System.Drawing.Point(621, 3);
+            this.chkContinuousExport.Name = "chkContinuousExport";
+            this.chkContinuousExport.Size = new System.Drawing.Size(185, 29);
+            this.chkContinuousExport.TabIndex = 5;
+            this.chkContinuousExport.Text = "Continuous Export";
+            this.chkContinuousExport.UseVisualStyleBackColor = true;
+            this.chkContinuousExport.CheckedChanged += new System.EventHandler(this.chkContinuousExport_CheckedChanged);
+            // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
@@ -525,6 +554,7 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picArtwork)).EndInit();
@@ -580,6 +610,8 @@
         private System.Windows.Forms.Label lblLastExport;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.CheckBox chkContinuousExport;
+        private System.Windows.Forms.Button btnPush;
     }
 }
 
