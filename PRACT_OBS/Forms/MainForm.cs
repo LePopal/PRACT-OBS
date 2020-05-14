@@ -253,5 +253,10 @@ namespace PRACT_OBS
         {
             OneTimeExport();
         }
+
+        private void toolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            OBSExport.Clean();
+        }
     }
 }
