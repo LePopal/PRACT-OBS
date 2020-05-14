@@ -22,7 +22,7 @@ namespace PRACT_OBS.Classes.Helpers
             {
                 // If undefined, the OutputFolder will be the MyDocuments directory
                 if (settings.OutputFolder == string.Empty)
-                    return Paths.MyDocumentsFolder;
+                    return SystemPaths.MyDocumentsFolder;
                 else
                     return settings.OutputFolder.Trim();
             }
@@ -181,7 +181,7 @@ namespace PRACT_OBS.Classes.Helpers
         private static void MineKey()
         {
             // Load App.asar and clean/stripe it to better find what we're looking for
-            string appAsarContent = Regex.Replace(File.ReadAllText(Paths.AppAsarFilePath), @"[^\u0000-\u007F]+", string.Empty)
+            string appAsarContent = Regex.Replace(File.ReadAllText(Rekordbox6Paths.AppAsarFilePath), @"[^\u0000-\u007F]+", string.Empty)
                         .Replace(" ", string.Empty)
                         .Replace("\n", string.Empty)
                         .Replace("\r", string.Empty); ;
@@ -199,7 +199,7 @@ namespace PRACT_OBS.Classes.Helpers
             else
                 throw new System.Data.DataException("Passphrase not found");
             BlowFish blowFish = new BlowFish(Encoding.ASCII.GetBytes(_EncryptionPassPhrase));
-            byte[] data = Convert.FromBase64String(Paths.Rb6Options.options.Dp);
+            byte[] data = Convert.FromBase64String(Rekordbox6Paths.Rb6Options.options.Dp);
             //string base64Decoded = System.Text.ASCIIEncoding.ASCII.GetString(data);
             byte[] out1 = blowFish.Decrypt_ECB(data);
             EncryptionKey = System.Text.ASCIIEncoding.ASCII.GetString(out1);

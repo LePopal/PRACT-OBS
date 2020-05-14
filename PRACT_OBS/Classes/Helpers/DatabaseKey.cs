@@ -16,7 +16,7 @@ namespace PRACT_OBS.Classes.Helpers
 
         public void MineKey()
         {
-            string appAsarContent = CleanString(File.ReadAllText(Paths.AppAsarFilePath));
+            string appAsarContent = CleanString(File.ReadAllText(Rekordbox6Paths.AppAsarFilePath));
             string pattern = "pass:\"(.*?)\"}";
 
             MatchCollection matches = Regex.Matches(appAsarContent, pattern);
@@ -31,7 +31,7 @@ namespace PRACT_OBS.Classes.Helpers
             else
                 throw new DataException("Passphrase not found");
             BlowFish blowFish = new BlowFish(Encoding.ASCII.GetBytes(_EncryptionPassPhrase));
-            byte[] data = Convert.FromBase64String(Paths.Rb6Options.options.Dp);
+            byte[] data = Convert.FromBase64String(Rekordbox6Paths.Rb6Options.options.Dp);
             //string base64Decoded = System.Text.ASCIIEncoding.ASCII.GetString(data);
             byte[] out1 = blowFish.Decrypt_ECB(data);
             EncryptionKey = System.Text.ASCIIEncoding.ASCII.GetString(out1);

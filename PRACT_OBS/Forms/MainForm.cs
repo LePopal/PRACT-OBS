@@ -68,7 +68,7 @@ namespace PRACT_OBS
                     {
                         if (!string.IsNullOrEmpty(lt.ImagePath))
                         {
-                            picArtwork.Image = Image.FromFile(Paths.AnalysisDataRootPath + lt.ImagePath);
+                            picArtwork.Image = Image.FromFile(Rekordbox6Paths.AnalysisDataRootPath + lt.ImagePath);
                         }
                         else
                         {
@@ -224,7 +224,7 @@ namespace PRACT_OBS
             get
             {
                 if(_MasterDB == null)
-                    _MasterDB = new MasterDB(Paths.DbPath, key);
+                    _MasterDB = new MasterDB(Rekordbox6Paths.DbPath, key);
                 return _MasterDB;
             }
         }

@@ -9,13 +9,13 @@ using System.Text.Json.Serialization;
 
 namespace PRACT_OBS.Classes.Helpers
 {
-    public static class Paths
+    public static class Rekordbox6Paths
     {
         public static string RekordboxRoot
         {
             get
             {
-                return Path.Combine(GetAppDataFolder(), "Rekordbox");
+                return Path.Combine(SystemPaths.AppDataFolder, "Rekordbox");
             }
         }
 
@@ -23,7 +23,7 @@ namespace PRACT_OBS.Classes.Helpers
         {
             get
             {
-                return Path.Combine(GetAppDataFolder(), Rekordbox6AgentRoot, Rekordbox6AgentOptionsFile);
+                return Path.Combine(SystemPaths.AppDataFolder, Rekordbox6AgentRoot, Rekordbox6AgentOptionsFile);
             }
         }
 
@@ -78,10 +78,7 @@ namespace PRACT_OBS.Classes.Helpers
             return JsonSerializer.Deserialize<Rekordbox6Options>(RewriteRekordboxAgentOptions(jsonString));
         }
 
-        private static string GetAppDataFolder()
-        {
-            return Environment.GetEnvironmentVariable("APPDATA");
-        }
+
 
         /// <summary>
         /// The Rekordbox Agent Options file can't be processed as is by System.Text.Json so we tidy it a bit
@@ -167,15 +164,6 @@ namespace PRACT_OBS.Classes.Helpers
                 return _Rb6Options;
             }
         }
-            
-        public static string MyDocumentsFolder
-        {
-            get
-            {
-                return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            }
-        }
-
 
         private static Rekordbox6Options _Rb6Options = null;
 
