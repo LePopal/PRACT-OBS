@@ -11,14 +11,20 @@ namespace PRACT_OBS.Classes.Helpers
 {
     public static class Paths
     {
-        public static string RekordboxRoot()
+        public static string RekordboxRoot
         {
-            return Path.Combine(GetAppDataFolder(), "Rekordbox");
+            get
+            {
+                return Path.Combine(GetAppDataFolder(), "Rekordbox");
+            }
         }
 
-        public static string Rekordbox6AgentOptionsFilePath ()
+        public static string Rekordbox6AgentOptionsFilePath
         {
-            return Path.Combine(GetAppDataFolder(), Rekordbox6AgentRoot, Rekordbox6AgentOptionsFile);
+            get
+            {
+                return Path.Combine(GetAppDataFolder(), Rekordbox6AgentRoot, Rekordbox6AgentOptionsFile);
+            }
         }
 
         public static string AnalysisDataRootPath
@@ -68,7 +74,7 @@ namespace PRACT_OBS.Classes.Helpers
 
         private static Rekordbox6Options LoadRekordboxOptions()
         {
-            string jsonString = File.ReadAllText(Rekordbox6AgentOptionsFilePath());
+            string jsonString = File.ReadAllText(Rekordbox6AgentOptionsFilePath);
             return JsonSerializer.Deserialize<Rekordbox6Options>(RewriteRekordboxAgentOptions(jsonString));
         }
 

@@ -31,7 +31,7 @@ namespace PRACT_OBS
                 .Append("SettingsRootPath=")
                 .AppendLine(Paths.SettingsRootPath)
                 .Append("RekordboxRootPath=")
-                .AppendLine(Paths.RekordboxRoot())
+                .AppendLine(Paths.RekordboxRoot)
                 .Append("RekordboxBinariesFolder=")
                 .AppendLine(Paths.RekordboxBinariesFolder)
                 .Append("App.asar=")
