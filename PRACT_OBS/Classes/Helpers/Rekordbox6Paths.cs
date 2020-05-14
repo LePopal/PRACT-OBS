@@ -1,11 +1,9 @@
 ﻿using PRACT_OBS.Classes.Data;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
-using System.Text.Json.Serialization;
 
 namespace PRACT_OBS.Classes.Helpers
 {
@@ -63,7 +61,9 @@ namespace PRACT_OBS.Classes.Helpers
                 return Path.Combine(RekordboxBinariesFolder, @"rekordboxAgent-win32-x64\resources\app.asar");
             }
         }
-
+        /// <summary>
+        /// The path to the Master.DB database
+        /// </summary>
         public static string DbPath
         {
             get
@@ -163,6 +163,16 @@ namespace PRACT_OBS.Classes.Helpers
                     _Rb6Options = LoadRekordboxOptions();
                 return _Rb6Options;
             }
+        }
+
+        /// <summary>
+        /// To check if Rekordbox6 is installed, we'll look for the options.json file
+        /// This may be improved in the future
+        /// </summary>
+        /// <returns>True if Rekordbox6 is installed</returns>
+        public static bool IsRekordbox6Installed()
+        {
+            return File.Exists(Rekordbox6AgentOptionsFilePath);
         }
 
         private static Rekordbox6Options _Rb6Options = null;
