@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.Sqlite;
+using PRACT_OBS.Classes.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -7,7 +8,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 
-namespace PRACT_OBS.Classes.Data
+namespace PRACT_OBS.Classes.Helpers
 {
     public class LastTrackHelper
     {
