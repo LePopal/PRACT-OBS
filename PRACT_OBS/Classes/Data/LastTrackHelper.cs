@@ -9,11 +9,11 @@ using System.Text;
 
 namespace PRACT_OBS.Classes.Data
 {
-    public class Helpers
+    public class LastTrackHelper
     {
         private const string FIELD_SEPARATOR = " || ";
 
-        public Helpers(MasterDB MasterDB)
+        public LastTrackHelper(MasterDB MasterDB)
         {
             _MasterDB = MasterDB;
         }

@@ -229,18 +229,18 @@ namespace PRACT_OBS
             }
         }
 
-        private Helpers h
+        private LastTrackHelper h
         {
             get
             {
                 if(_helper==null)
-                    _helper = new Helpers(masterDB);
+                    _helper = new LastTrackHelper(masterDB);
                 return _helper;
             }
         }
 
         private MasterDB _MasterDB = null;
-        private Helpers _helper = null;
+        private LastTrackHelper _helper = null;
 
         private void chkContinuousExport_CheckedChanged(object sender, EventArgs e)
         {
