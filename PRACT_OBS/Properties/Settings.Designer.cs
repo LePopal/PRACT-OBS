@@ -168,5 +168,41 @@ namespace PRACT_OBS.Properties {
                 this["JSONExportEnabled"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CleanFilesAtStartup {
+            get {
+                return ((bool)(this["CleanFilesAtStartup"]));
+            }
+            set {
+                this["CleanFilesAtStartup"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CleanFilesAtShutDown {
+            get {
+                return ((bool)(this["CleanFilesAtShutDown"]));
+            }
+            set {
+                this["CleanFilesAtShutDown"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DoNotExportPastTracks {
+            get {
+                return ((bool)(this["DoNotExportPastTracks"]));
+            }
+            set {
+                this["DoNotExportPastTracks"] = value;
+            }
+        }
     }
 }

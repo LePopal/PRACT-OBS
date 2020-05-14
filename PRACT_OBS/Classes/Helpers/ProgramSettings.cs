@@ -178,6 +178,45 @@ namespace PRACT_OBS.Classes.Helpers
                 settings.Save();
             }
         }
+        public static bool CleanFilesAtStartup
+        {
+            get
+            {
+                return settings.CleanFilesAtStartup;
+            }
+            set
+            {
+                settings.CleanFilesAtStartup = value;
+                settings.Save();
+            }
+        }
+        public static bool CleanFilesAtShutDown
+        {
+            get
+            {
+                return settings.CleanFilesAtShutDown;
+            }
+            set
+            {
+                settings.CleanFilesAtShutDown = value;
+                settings.Save();
+            }
+        }
+        public static bool DoNotExportPastTracks
+        {
+            get
+            {
+                return settings.DoNotExportPastTracks;
+            }
+            set
+            {
+                settings.DoNotExportPastTracks = value;
+                settings.Save();
+            }
+        }
+        
+
+
         private static void MineKey()
         {
             // Load App.asar and clean/stripe it to better find what we're looking for

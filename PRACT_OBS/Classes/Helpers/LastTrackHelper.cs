@@ -81,7 +81,15 @@ namespace PRACT_OBS.Classes.Helpers
 
         public LastTrack GetLastTrack()
         {
-            return GetCurrentTracksList().OrderByDescending(d => d.created_at).FirstOrDefault();
+            if(ProgramSettings.DoNotExportPastTracks)
+                return GetCurrentTracksList()
+                    .OrderByDescending(d => d.created_at)
+                    .Where(d => d.created_at >= Program.StartupTime)
+                    .FirstOrDefault();
+            else
+                return GetCurrentTracksList()
+                    .OrderByDescending(d => d.created_at)
+                    .FirstOrDefault();
         }
 
         public string GetCurrentTracks()

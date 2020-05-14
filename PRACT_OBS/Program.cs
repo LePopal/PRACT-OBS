@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
+using PRACT_OBS.Classes;
 using PRACT_OBS.Classes.Helpers;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ namespace PRACT_OBS
     static class Program
     {
         public static IConfiguration Configuration;
+        public static DateTime StartupTime = DateTime.Now;
+
         /// <summary>
         ///  The main entry point for the application.
         /// </summary>
@@ -26,6 +29,10 @@ namespace PRACT_OBS
                     .AddUserSecrets(System.Reflection.Assembly.GetExecutingAssembly())
                     .AddCommandLine(args)
                     .Build();
+
+                // Cleaning output files
+                if(ProgramSettings.CleanFilesAtStartup)
+                    OBSExport.Clean();
 
                 Application.SetHighDpiMode(HighDpiMode.SystemAware);
                 Application.EnableVisualStyles();

@@ -33,6 +33,10 @@ namespace PRACT_OBS
             txtCustomFormat.Text = ProgramSettings.CustomExportFormat;
             chkCustomExport.Checked = ProgramSettings.CustomExportEnabled;
             txtCustomFormat.Enabled = chkCustomExport.Checked;
+            chkCleanStartup.Checked = ProgramSettings.CleanFilesAtStartup;
+            chkCleanExit.Checked = ProgramSettings.CleanFilesAtShutDown;
+            chkDoNot.Checked = ProgramSettings.DoNotExportPastTracks;
+
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -78,6 +82,9 @@ namespace PRACT_OBS
 
             ProgramSettings.ArtistTitleSeparator = txtArtistTitleSeparator.Text;
             ProgramSettings.JSONExportEnabled = chkJSON.Checked;
+            ProgramSettings.DoNotExportPastTracks = chkDoNot.Checked;
+            ProgramSettings.CleanFilesAtShutDown = chkCleanExit.Checked;
+            ProgramSettings.CleanFilesAtStartup = chkCleanStartup.Checked;
 
             if (!string.IsNullOrWhiteSpace(txtDefaultArtwork.Text)
                 && !File.Exists(txtDefaultArtwork.Text))

@@ -139,6 +139,8 @@ namespace PRACT_OBS
                   };
                 timer.Start();
             }
+            if (ProgramSettings.CleanFilesAtShutDown)
+                OBSExport.Clean();
         }
 
         private void StopExport()

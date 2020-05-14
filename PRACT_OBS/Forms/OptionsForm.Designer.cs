@@ -52,6 +52,9 @@
             this.txtCustomFormat = new System.Windows.Forms.TextBox();
             this.chkCustomExport = new System.Windows.Forms.CheckBox();
             this.chkJSON = new System.Windows.Forms.CheckBox();
+            this.chkDoNot = new System.Windows.Forms.CheckBox();
+            this.chkCleanStartup = new System.Windows.Forms.CheckBox();
+            this.chkCleanExit = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -101,7 +104,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(424, 336);
+            this.btnOK.Location = new System.Drawing.Point(424, 474);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(112, 34);
             this.btnOK.TabIndex = 4;
@@ -111,7 +114,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(659, 336);
+            this.btnCancel.Location = new System.Drawing.Point(659, 474);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(112, 34);
             this.btnCancel.TabIndex = 4;
@@ -179,7 +182,7 @@
             // 
             this.txtArtistTitleSeparator.Location = new System.Drawing.Point(218, 164);
             this.txtArtistTitleSeparator.Name = "txtArtistTitleSeparator";
-            this.txtArtistTitleSeparator.Size = new System.Drawing.Size(816, 31);
+            this.txtArtistTitleSeparator.Size = new System.Drawing.Size(989, 31);
             this.txtArtistTitleSeparator.TabIndex = 1;
             // 
             // btnDefaultArtwork
@@ -255,12 +258,45 @@
             // 
             this.chkJSON.AutoSize = true;
             this.chkJSON.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.chkJSON.Location = new System.Drawing.Point(1040, 166);
+            this.chkJSON.Location = new System.Drawing.Point(321, 371);
             this.chkJSON.Name = "chkJSON";
             this.chkJSON.Size = new System.Drawing.Size(146, 29);
             this.chkJSON.TabIndex = 7;
             this.chkJSON.Text = "JSON Export";
             this.chkJSON.UseVisualStyleBackColor = true;
+            // 
+            // chkDoNot
+            // 
+            this.chkDoNot.AutoSize = true;
+            this.chkDoNot.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.chkDoNot.Location = new System.Drawing.Point(321, 336);
+            this.chkDoNot.Name = "chkDoNot";
+            this.chkDoNot.Size = new System.Drawing.Size(438, 29);
+            this.chkDoNot.TabIndex = 8;
+            this.chkDoNot.Text = "Do not load previously played tracks at startup";
+            this.chkDoNot.UseVisualStyleBackColor = true;
+            // 
+            // chkCleanStartup
+            // 
+            this.chkCleanStartup.AutoSize = true;
+            this.chkCleanStartup.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.chkCleanStartup.Location = new System.Drawing.Point(13, 337);
+            this.chkCleanStartup.Name = "chkCleanStartup";
+            this.chkCleanStartup.Size = new System.Drawing.Size(216, 29);
+            this.chkCleanStartup.TabIndex = 9;
+            this.chkCleanStartup.Text = "Clean files at Startup";
+            this.chkCleanStartup.UseVisualStyleBackColor = true;
+            // 
+            // chkCleanExit
+            // 
+            this.chkCleanExit.AutoSize = true;
+            this.chkCleanExit.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.chkCleanExit.Location = new System.Drawing.Point(13, 372);
+            this.chkCleanExit.Name = "chkCleanExit";
+            this.chkCleanExit.Size = new System.Drawing.Size(189, 29);
+            this.chkCleanExit.TabIndex = 10;
+            this.chkCleanExit.Text = "Clean files on Exit";
+            this.chkCleanExit.UseVisualStyleBackColor = true;
             // 
             // OptionsForm
             // 
@@ -268,7 +304,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(1220, 382);
+            this.ClientSize = new System.Drawing.Size(1220, 520);
+            this.Controls.Add(this.chkCleanExit);
+            this.Controls.Add(this.chkCleanStartup);
+            this.Controls.Add(this.chkDoNot);
             this.Controls.Add(this.chkJSON);
             this.Controls.Add(this.chkCustomExport);
             this.Controls.Add(this.txtCustomFormat);
@@ -327,5 +366,8 @@
         private System.Windows.Forms.TextBox txtCustomFormat;
         private System.Windows.Forms.CheckBox chkCustomExport;
         private System.Windows.Forms.CheckBox chkJSON;
+        private System.Windows.Forms.CheckBox chkDoNot;
+        private System.Windows.Forms.CheckBox chkCleanStartup;
+        private System.Windows.Forms.CheckBox chkCleanExit;
     }
 }

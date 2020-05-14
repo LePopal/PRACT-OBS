@@ -161,7 +161,7 @@ namespace PRACT_OBS.Classes
             }
         }
 
-        public static void Reset()
+        public static void Clean()
         {
             PreviousArtist = string.Empty;
             PreviousTitle = string.Empty;
@@ -170,6 +170,15 @@ namespace PRACT_OBS.Classes
             IsArtistFileEmpty = false;
             IsTitleFileEmpty = false;
             IsArtworkFileEmpty = false;
+            File.Delete(GetPath(ARTIST_FILENAME));
+            File.Delete(GetPath(ARTIST_TITLE_FILENAME)); 
+            File.Delete(GetPath(ARTWORK_FILENAME));
+            File.Delete(GetPath(CUSTOM_FILENAME));
+            File.Delete(GetPath(JSON_FILENAME)); 
+            File.Delete(GetPath(TITLE_FILENAME));
+            
+            
+            
         }
 
         /// <summary>
