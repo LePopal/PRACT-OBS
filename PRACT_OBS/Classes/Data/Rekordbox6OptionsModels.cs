@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Text.Json.Serialization;
 
-namespace PRACT_OBS.Classes.Data.Rekordbox6OptionsModels
+namespace PRACT_OBS.Classes.Data
 {
     public class Option
     {

@@ -1,4 +1,4 @@
-﻿using PRACT_OBS.Classes.Data.Rekordbox6OptionsModels;
+﻿using PRACT_OBS.Classes.Data;
 using System;
 using System.Collections.Generic;
 using System.IO;
