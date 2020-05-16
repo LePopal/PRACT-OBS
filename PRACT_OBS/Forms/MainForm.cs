@@ -99,6 +99,7 @@ namespace PRACT_OBS
 
         private void OneTimeExport()
         {
+            OBSExport.Clean();
             OBSExport.ExportLastTrack(h.GetLastTrack());
         }
         private void button2_Click(object sender, EventArgs e)
@@ -203,6 +204,14 @@ namespace PRACT_OBS
                     if (btnStop.Enabled)
                     {
                         StopExport();
+                        return true;
+                    }
+                    else
+                        break;
+                case Keys.F9:
+                    if (!chkContinuousExport.Checked)
+                    {
+                        OneTimeExport();
                         return true;
                     }
                     else

@@ -78,6 +78,7 @@
             this.btnPush = new System.Windows.Forms.Button();
             this.chkContinuousExport = new System.Windows.Forms.CheckBox();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -522,7 +523,7 @@
             this.btnPush.Name = "btnPush";
             this.btnPush.Size = new System.Drawing.Size(157, 55);
             this.btnPush.TabIndex = 6;
-            this.btnPush.Text = "Push";
+            this.btnPush.Text = "Push (F9)";
             this.btnPush.UseVisualStyleBackColor = true;
             this.btnPush.Click += new System.EventHandler(this.btnPush_Click);
             // 
@@ -546,11 +547,20 @@
             this.toolStripMenuItem1.Size = new System.Drawing.Size(205, 34);
             this.toolStripMenuItem1.Text = "Debug Info";
             // 
+            // checkedListBox1
+            // 
+            this.checkedListBox1.FormattingEnabled = true;
+            this.checkedListBox1.Location = new System.Drawing.Point(455, 0);
+            this.checkedListBox1.Name = "checkedListBox1";
+            this.checkedListBox1.Size = new System.Drawing.Size(8, 4);
+            this.checkedListBox1.TabIndex = 5;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(803, 417);
+            this.Controls.Add(this.checkedListBox1);
             this.Controls.Add(this.splitContainer1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -622,6 +632,7 @@
         private System.Windows.Forms.CheckBox chkContinuousExport;
         private System.Windows.Forms.Button btnPush;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.CheckedListBox checkedListBox1;
     }
 }
 
