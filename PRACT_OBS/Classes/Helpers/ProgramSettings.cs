@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using PRACT.Rekordbox6.Classes.Helpers;
 using PRACT_OBS.Properties;
 using System;
 using System.Collections.Generic;
@@ -11,11 +12,9 @@ using System.Text.RegularExpressions;
 
 namespace PRACT_OBS.Classes.Helpers
 {
-    public static class ProgramSettings
+    public class ProgramSettings  : PRACT.Rekordbox6.Helpers.ProgramSettings
     {
-        // Useful constants
-        public const string PASSPHRASE_TO_MINE = "PASSPHRASE_TO_MINE";
-        
+
         public static string OutputFolder
         {
             get
@@ -33,30 +32,7 @@ namespace PRACT_OBS.Classes.Helpers
             }
         }
 
-        public static string Key
-        {
-            get
-            {
-                // If not set, the program will try to mine for the database passphrase
-                // otherwise it will use the key stored in the config file
-                if (settings.PassphraseToMine)
-                {
-                    if (EncryptionKey != string.Empty)
-                    {
-                        MineKey();
-                    }
-                    return EncryptionKey;
-                }
-                else
-                    return settings.Key;
 
-                }
-            set
-            {
-                settings.Key = value;
-                settings.Save();
-            }
-        }
 
         public static int Timer
         {
@@ -214,38 +190,32 @@ namespace PRACT_OBS.Classes.Helpers
                 settings.Save();
             }
         }
-        
 
-
-        private static void MineKey()
+        public static string Key
         {
-            // Load App.asar and clean/stripe it to better find what we're looking for
-            string appAsarContent = Regex.Replace(File.ReadAllText(Rekordbox6Paths.AppAsarFilePath), @"[^\u0000-\u007F]+", string.Empty)
-                        .Replace(" ", string.Empty)
-                        .Replace("\n", string.Empty)
-                        .Replace("\r", string.Empty); ;
-
-            string pattern = "pass:\"(.*?)\"}";
-
-            MatchCollection matches = Regex.Matches(appAsarContent, pattern);
-            List<string> l = new List<string>();
-            foreach (Match match in matches)
+            get
             {
-                l.Add(match.Groups[1].Value);
+                // If not set, the program will try to mine for the database passphrase
+                // otherwise it will use the key stored in the config file
+                if (settings.PassphraseToMine)
+                {
+                    if (EncryptionKey != string.Empty)
+                    {
+                        MineKey();
+                    }
+                    return EncryptionKey;
+                }
+                else
+                    return settings.Key;
+
             }
-            if (l.Count > 0)
-                _EncryptionPassPhrase = l[0];
-            else
-                throw new System.Data.DataException("Passphrase not found");
-            BlowFish blowFish = new BlowFish(Encoding.ASCII.GetBytes(_EncryptionPassPhrase));
-            byte[] data = Convert.FromBase64String(Rekordbox6Paths.Rb6Options.options.Dp);
-            //string base64Decoded = System.Text.ASCIIEncoding.ASCII.GetString(data);
-            byte[] out1 = blowFish.Decrypt_ECB(data);
-            EncryptionKey = System.Text.ASCIIEncoding.ASCII.GetString(out1);
+            set
+            {
+                settings.Key = value;
+                settings.Save();
+            }
         }
 
-        private static string _EncryptionPassPhrase { get; set; }
-        private static string EncryptionKey { get; set; }
         private static Settings settings
         {
             get

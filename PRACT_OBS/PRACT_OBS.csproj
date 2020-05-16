@@ -22,6 +22,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Classes\Data\**" />
+    <EmbeddedResource Remove="Classes\Data\**" />
+    <None Remove="Classes\Data\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Classes\Blowfish.cs" />
+    <Compile Remove="Classes\Helpers\DatabaseKey.cs" />
+    <Compile Remove="Classes\Helpers\Rekordbox6Paths.cs" />
+    <Compile Remove="Classes\Helpers\SystemPaths.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.9.8">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -79,6 +92,10 @@
 
   <ItemGroup>
     <Folder Include="Pictures\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PRACT.Rekordbox6\PRACT.Rekordbox6.csproj" />
   </ItemGroup>
 
 </Project>

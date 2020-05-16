@@ -1,12 +1,8 @@
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Configuration;
+using PRACT.Rekordbox6.Classes.Helpers;
 using PRACT_OBS.Classes;
 using PRACT_OBS.Classes.Helpers;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace PRACT_OBS

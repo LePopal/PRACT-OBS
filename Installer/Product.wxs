@@ -121,6 +121,15 @@
       <Component Id="PRACT_OBS.dll" Guid="2773c07c-50ba-4507-a215-8492f24ddbdf">
         <File Id="PRACT_OBS.dll" Name="PRACT_OBS.dll" Source="$(var.PRACT_OBS_TargetDir)PRACT_OBS.dll" KeyPath="yes"/>
       </Component>
+      <Component Id="PRACT.Rekordbox6.dll" Guid="04ed8d7d-264b-47f4-829a-1e93a5ec092c">
+        <File Id="PRACT.Rekordbox6.dll" Name="PRACT.Rekordbox6.dll" Source="$(var.PRACT_OBS_TargetDir)PRACT.Rekordbox6.dll" KeyPath="yes"/>
+      </Component>
+      <Component Id="System.Collections.Immutable.dll" Guid="55ea1537-1b4f-4ad4-b42a-e82eb60bd204">
+        <File Id="System.Collections.Immutable.dll" Name="System.Collections.Immutable.dll" Source="$(var.PRACT_OBS_TargetDir)System.Collections.Immutable.dll" KeyPath="yes"/>
+      </Component>
+      <Component Id="System.Diagnostics.DiagnosticSource.dll" Guid="734bed08-3850-4ee5-bfa8-8a8e61889549">
+        <File Id="System.Diagnostics.DiagnosticSource.dll" Name="System.Diagnostics.DiagnosticSource.dll" Source="$(var.PRACT_OBS_TargetDir)System.Diagnostics.DiagnosticSource.dll" KeyPath="yes"/>
+      </Component>
       <Component Id="Microsoft.Extensions.Configuration.UserSecrets.dll" Guid="e729d979-b384-407a-b43f-32166436b179">
         <File Id="Microsoft.Extensions.Configuration.UserSecrets.dll" Name="Microsoft.Extensions.Configuration.UserSecrets.dll" Source="$(var.PRACT_OBS_TargetDir)Microsoft.Extensions.Configuration.UserSecrets.dll" />
       </Component>
