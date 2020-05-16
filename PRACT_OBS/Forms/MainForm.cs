@@ -22,12 +22,28 @@ namespace PRACT_OBS
         public MainForm()
         {
             this.Text = Application.ProductName;
+
+
             InitializeComponent();
             if (ProgramSettings.ShowDisclaimer)
             {
                 DisclaimerForm disclaimer = new DisclaimerForm();
                 disclaimer.ShowDialog();
             }
+            this.ttipMainform.AutoPopDelay = 5000;
+            this.ttipMainform.InitialDelay = 1000;
+            this.ttipMainform.ReshowDelay = 500;
+            this.ttipMainform.ShowAlways = true;
+            this.ttipMainform.SetToolTip(this.btnPush, "Force the export of the current track data");
+            this.ttipMainform.SetToolTip(this.btnStart, "Start the track history monitoring");
+            this.ttipMainform.SetToolTip(this.btnStop, "Stop the track history monitoring");
+            this.ttipMainform.SetToolTip(this.chkContinuousExport, "Contiously export data");
+            this.ttipMainform.SetToolTip(this.txtArtist, "Current artist");
+            this.ttipMainform.SetToolTip(this.txtTitle, "Current track title");
+            this.ttipMainform.SetToolTip(this.txtLastExport, "Last time track data has been exported");
+            this.ttipMainform.SetToolTip(this.txtHistory, "Time it was added to the Rekordbox track history");
+            this.ttipMainform.SetToolTip(this.lnkFilename, "Click to show the file in the Explorer");
+            this.ttipMainform.SetToolTip(this.picArtwork, "Current artwork");
         }
 
         private void btnStart_Click(object sender, EventArgs e)
