@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.txtKey = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -55,6 +56,7 @@
             this.chkDoNot = new System.Windows.Forms.CheckBox();
             this.chkCleanStartup = new System.Windows.Forms.CheckBox();
             this.chkCleanExit = new System.Windows.Forms.CheckBox();
+            this.ttipOptions = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -369,5 +371,6 @@
         private System.Windows.Forms.CheckBox chkDoNot;
         private System.Windows.Forms.CheckBox chkCleanStartup;
         private System.Windows.Forms.CheckBox chkCleanExit;
+        private System.Windows.Forms.ToolTip ttipOptions;
     }
 }

@@ -36,7 +36,23 @@ namespace PRACT_OBS
             chkCleanStartup.Checked = ProgramSettings.CleanFilesAtStartup;
             chkCleanExit.Checked = ProgramSettings.CleanFilesAtShutDown;
             chkDoNot.Checked = ProgramSettings.DoNotExportPastTracks;
-
+            this.ttipOptions.AutoPopDelay = 5000;
+            this.ttipOptions.InitialDelay = 1000;
+            this.ttipOptions.ReshowDelay = 500;
+            this.ttipOptions.ShowAlways = true;
+            this.ttipOptions.SetToolTip(this.txtKey, "Provide an explicit Rekordbox database encryption key");
+            this.ttipOptions.SetToolTip(this.chkMine, "Checked: tries to automatically find the encryption key");
+            this.ttipOptions.SetToolTip(this.txtOutputFolder, "Folder where to export the files to OBS");
+            this.ttipOptions.SetToolTip(this.txtOnScreenDuration, "How long in seconds the current track info should be displayed in OBS. 0 means forever");
+            this.ttipOptions.SetToolTip(this.txtArtistTitleSeparator, "A separator for the ArtistTitle.txt file");
+            this.ttipOptions.SetToolTip(this.txtPooling, "How often should the program query Rekordbox for new played tracks. New played tracks don't appear before 1 minute in the Rekordbox history. Default is 10 seconds. A too short value my degrade Rekordbox performance and corrupt data.");
+            this.ttipOptions.SetToolTip(this.txtDefaultArtwork, "Path to a picture to display when none wwas found or none exists");
+            this.ttipOptions.SetToolTip(this.txtCustomFormat, "Specify a custom format for the custom format file. Values include : %ID% %FOLDERPATH% %ARTIST% %TITLE% %IMAGEPATH% %BPM% %RATING% %YEAR% %LENGTH% %COLORID% %COLORNAME% %COMMENT% %ALBUM% %LABEL% %GENRE% %KEY%  %REMIXER%  %MESSAGE%");
+            this.ttipOptions.SetToolTip(this.chkCustomExport, "Enable or disable the custom format file");
+            this.ttipOptions.SetToolTip(this.chkCleanStartup, "Automatically delete the exported files on startup");
+            this.ttipOptions.SetToolTip(this.chkCleanStartup, "Automatically delete the exported files on shutdown");
+            this.ttipOptions.SetToolTip(this.chkDoNot, "Don't load previously played track when the program starts");
+            this.ttipOptions.SetToolTip(this.chkJSON, "Enable or disable the JSON export");
         }
 
         private void btnOK_Click(object sender, EventArgs e)
