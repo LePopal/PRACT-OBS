@@ -208,7 +208,7 @@ namespace PRACT_OBS.Classes.Helpers
             set
             {
                 settings.Rekordbox6Exe = value;
-                Rekordbox6Paths.RekordboxBinariesFolder = value;
+                Rekordbox6Paths.RekordboxBinariesFolder = RekordboxBinariesFolder;
                 settings.Save();
             }
         }
