@@ -12,4 +12,8 @@
     <PackageReference Include="SQLitePCLRaw.bundle_zetetic" Version="2.0.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PRACT.Common\PRACT.Common.csproj" />
+  </ItemGroup>
+
 </Project>

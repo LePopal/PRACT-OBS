@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Text;
@@ -15,6 +16,7 @@ namespace PRACT_OBS
         public OptionsForm()
         {
             InitializeComponent();
+            txtRekordbox.Text = ProgramSettings.Rekordbox6Executable;
             chkMine.Checked = ProgramSettings.PassphraseToMine;
             if (ProgramSettings.PassphraseToMine)
             {
@@ -62,7 +64,10 @@ namespace PRACT_OBS
                 ProgramSettings.Key = ProgramSettings.PASSPHRASE_TO_MINE;
             else
                 ProgramSettings.Key = txtKey.Text;
-
+            if (!CheckRekordbox6Exe())
+                Messages.ErrorMessage($"The following file is not a Rekordbox 6 executable : { txtRekordbox.Text }");
+            else 
+                ProgramSettings.Rekordbox6Executable = txtRekordbox.Text;
             if (!CheckKey())
                 Messages.WarningMessage("This key doesn't seem to be valid!");
 
@@ -155,6 +160,17 @@ namespace PRACT_OBS
             return true; // Todo
         }
 
+        /// <summary>
+        /// Check if the right executable has been chosen. It could be Rekordbox 5 or earlier
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckRekordbox6Exe()
+        {
+            if (File.Exists(txtRekordbox.Text))
+                return FileVersionInfo.GetVersionInfo(txtRekordbox.Text).FileVersion.StartsWith('6');
+            else
+                return false;
+        }
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -208,6 +224,15 @@ namespace PRACT_OBS
         private void chkCustomExport_CheckedChanged(object sender, EventArgs e)
         {
             txtCustomFormat.Enabled = ((CheckBox)sender).Checked;
+        }
+
+        private void btnRekordbox_Click(object sender, EventArgs e)
+        {
+            fileRekordboxExe.FileName = txtRekordbox.Text;
+            fileRekordboxExe.ShowDialog();
+            txtRekordbox.Text = fileRekordboxExe.FileName;
+            if (!CheckRekordbox6Exe())
+                Messages.ErrorMessage($"The following file is not a Rekordbox 6 executable : { txtRekordbox.Text }");
         }
     }
 }

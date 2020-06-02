@@ -2,7 +2,9 @@ using Microsoft.Extensions.Configuration;
 using PRACT.Rekordbox6.Classes.Helpers;
 using PRACT_OBS.Classes;
 using PRACT_OBS.Classes.Helpers;
+using PRACT_OBS.Properties;
 using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace PRACT_OBS
@@ -18,7 +20,14 @@ namespace PRACT_OBS
         [STAThread]
         static void Main(string[] args)
         {
-            if (Rekordbox6Paths.IsRekordbox6Installed())
+            Rekordbox6Paths.RekordboxBinariesFolder = ProgramSettings.RekordboxBinariesFolder;
+            bool startUpPossible = string.IsNullOrWhiteSpace(ProgramSettings.Rekordbox6Executable)
+                || !File.Exists(ProgramSettings.Rekordbox6Executable);
+            if (startUpPossible)
+                Messages.WarningMessage("The Rekordbox 6 executable could not be found. Be sure to configure it in the Options menu before proceeding : Tools / Options.");
+
+            // We can start the application even if the exe could not be found because we have to configure it anyway
+            if (startUpPossible || Rekordbox6Paths.IsRekordbox6Installed())
             {
                 Configuration = new ConfigurationBuilder()
                     .AddEnvironmentVariables()

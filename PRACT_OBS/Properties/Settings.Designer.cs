@@ -38,18 +38,6 @@ namespace PRACT_OBS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Sboub {
-            get {
-                return ((string)(this["Sboub"]));
-            }
-            set {
-                this["Sboub"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string OutputFolder {
             get {
                 return ((string)(this["OutputFolder"]));
@@ -202,6 +190,18 @@ namespace PRACT_OBS.Properties {
             }
             set {
                 this["DoNotExportPastTracks"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Rekordbox6Exe {
+            get {
+                return ((string)(this["Rekordbox6Exe"]));
+            }
+            set {
+                this["Rekordbox6Exe"] = value;
             }
         }
     }

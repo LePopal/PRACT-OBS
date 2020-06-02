@@ -191,6 +191,27 @@ namespace PRACT_OBS.Classes.Helpers
             }
         }
 
+        public static string RekordboxBinariesFolder
+        {
+            get
+            {
+                return Path.GetDirectoryName(Rekordbox6Executable);
+            }
+        }
+
+        public static string Rekordbox6Executable
+        {
+            get
+            {
+                return settings.Rekordbox6Exe;
+            }
+            set
+            {
+                settings.Rekordbox6Exe = value;
+                Rekordbox6Paths.RekordboxBinariesFolder = value;
+                settings.Save();
+            }
+        }
         public static string Key
         {
             get
@@ -199,7 +220,7 @@ namespace PRACT_OBS.Classes.Helpers
                 // otherwise it will use the key stored in the config file
                 if (settings.PassphraseToMine)
                 {
-                    if (EncryptionKey != string.Empty)
+                    if (string.IsNullOrWhiteSpace(EncryptionKey))
                     {
                         MineKey();
                     }

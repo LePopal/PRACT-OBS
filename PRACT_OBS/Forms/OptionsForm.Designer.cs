@@ -57,13 +57,17 @@
             this.chkCleanStartup = new System.Windows.Forms.CheckBox();
             this.chkCleanExit = new System.Windows.Forms.CheckBox();
             this.ttipOptions = new System.Windows.Forms.ToolTip(this.components);
+            this.btnRekordbox = new System.Windows.Forms.Button();
+            this.txtRekordbox = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.fileRekordboxExe = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(13, 49);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(44, 25);
             this.label1.TabIndex = 0;
@@ -71,7 +75,7 @@
             // 
             // txtKey
             // 
-            this.txtKey.Location = new System.Drawing.Point(218, 13);
+            this.txtKey.Location = new System.Drawing.Point(218, 49);
             this.txtKey.Name = "txtKey";
             this.txtKey.Size = new System.Drawing.Size(816, 31);
             this.txtKey.TabIndex = 1;
@@ -81,7 +85,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label2.Location = new System.Drawing.Point(13, 50);
+            this.label2.Location = new System.Drawing.Point(13, 86);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(131, 25);
             this.label2.TabIndex = 0;
@@ -89,14 +93,14 @@
             // 
             // txtOutputFolder
             // 
-            this.txtOutputFolder.Location = new System.Drawing.Point(218, 50);
+            this.txtOutputFolder.Location = new System.Drawing.Point(218, 86);
             this.txtOutputFolder.Name = "txtOutputFolder";
             this.txtOutputFolder.Size = new System.Drawing.Size(928, 31);
             this.txtOutputFolder.TabIndex = 2;
             // 
             // btnOutputFolder
             // 
-            this.btnOutputFolder.Location = new System.Drawing.Point(1152, 50);
+            this.btnOutputFolder.Location = new System.Drawing.Point(1152, 86);
             this.btnOutputFolder.Name = "btnOutputFolder";
             this.btnOutputFolder.Size = new System.Drawing.Size(55, 34);
             this.btnOutputFolder.TabIndex = 3;
@@ -128,7 +132,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label3.Location = new System.Drawing.Point(13, 90);
+            this.label3.Location = new System.Drawing.Point(13, 126);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(179, 25);
             this.label3.TabIndex = 0;
@@ -136,7 +140,7 @@
             // 
             // txtOnScreenDuration
             // 
-            this.txtOnScreenDuration.Location = new System.Drawing.Point(218, 90);
+            this.txtOnScreenDuration.Location = new System.Drawing.Point(218, 126);
             this.txtOnScreenDuration.Name = "txtOnScreenDuration";
             this.txtOnScreenDuration.Size = new System.Drawing.Size(990, 31);
             this.txtOnScreenDuration.TabIndex = 1;
@@ -145,7 +149,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(12, 127);
+            this.label4.Location = new System.Drawing.Point(12, 163);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(135, 25);
             this.label4.TabIndex = 0;
@@ -153,7 +157,7 @@
             // 
             // txtPooling
             // 
-            this.txtPooling.Location = new System.Drawing.Point(217, 127);
+            this.txtPooling.Location = new System.Drawing.Point(217, 163);
             this.txtPooling.Name = "txtPooling";
             this.txtPooling.Size = new System.Drawing.Size(990, 31);
             this.txtPooling.TabIndex = 1;
@@ -162,7 +166,7 @@
             // 
             this.chkMine.AutoSize = true;
             this.chkMine.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.chkMine.Location = new System.Drawing.Point(1040, 13);
+            this.chkMine.Location = new System.Drawing.Point(1040, 49);
             this.chkMine.Name = "chkMine";
             this.chkMine.Size = new System.Drawing.Size(179, 29);
             this.chkMine.TabIndex = 5;
@@ -174,7 +178,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.Location = new System.Drawing.Point(13, 164);
+            this.label5.Location = new System.Drawing.Point(13, 200);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(194, 25);
             this.label5.TabIndex = 0;
@@ -182,14 +186,14 @@
             // 
             // txtArtistTitleSeparator
             // 
-            this.txtArtistTitleSeparator.Location = new System.Drawing.Point(218, 164);
+            this.txtArtistTitleSeparator.Location = new System.Drawing.Point(218, 200);
             this.txtArtistTitleSeparator.Name = "txtArtistTitleSeparator";
             this.txtArtistTitleSeparator.Size = new System.Drawing.Size(989, 31);
             this.txtArtistTitleSeparator.TabIndex = 1;
             // 
             // btnDefaultArtwork
             // 
-            this.btnDefaultArtwork.Location = new System.Drawing.Point(1152, 201);
+            this.btnDefaultArtwork.Location = new System.Drawing.Point(1152, 237);
             this.btnDefaultArtwork.Name = "btnDefaultArtwork";
             this.btnDefaultArtwork.Size = new System.Drawing.Size(55, 34);
             this.btnDefaultArtwork.TabIndex = 3;
@@ -199,7 +203,7 @@
             // 
             // txtDefaultArtwork
             // 
-            this.txtDefaultArtwork.Location = new System.Drawing.Point(218, 201);
+            this.txtDefaultArtwork.Location = new System.Drawing.Point(218, 237);
             this.txtDefaultArtwork.Name = "txtDefaultArtwork";
             this.txtDefaultArtwork.Size = new System.Drawing.Size(867, 31);
             this.txtDefaultArtwork.TabIndex = 2;
@@ -208,7 +212,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label6.Location = new System.Drawing.Point(13, 201);
+            this.label6.Location = new System.Drawing.Point(13, 237);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(150, 25);
             this.label6.TabIndex = 0;
@@ -220,7 +224,7 @@
             // 
             // btnClearDefaultArtwork
             // 
-            this.btnClearDefaultArtwork.Location = new System.Drawing.Point(1091, 201);
+            this.btnClearDefaultArtwork.Location = new System.Drawing.Point(1091, 237);
             this.btnClearDefaultArtwork.Name = "btnClearDefaultArtwork";
             this.btnClearDefaultArtwork.Size = new System.Drawing.Size(55, 34);
             this.btnClearDefaultArtwork.TabIndex = 3;
@@ -232,7 +236,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label7.Location = new System.Drawing.Point(13, 241);
+            this.label7.Location = new System.Drawing.Point(13, 277);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(141, 25);
             this.label7.TabIndex = 0;
@@ -240,7 +244,7 @@
             // 
             // txtCustomFormat
             // 
-            this.txtCustomFormat.Location = new System.Drawing.Point(218, 241);
+            this.txtCustomFormat.Location = new System.Drawing.Point(218, 277);
             this.txtCustomFormat.Multiline = true;
             this.txtCustomFormat.Name = "txtCustomFormat";
             this.txtCustomFormat.Size = new System.Drawing.Size(961, 89);
@@ -249,7 +253,7 @@
             // chkCustomExport
             // 
             this.chkCustomExport.AutoSize = true;
-            this.chkCustomExport.Location = new System.Drawing.Point(1185, 245);
+            this.chkCustomExport.Location = new System.Drawing.Point(1185, 281);
             this.chkCustomExport.Name = "chkCustomExport";
             this.chkCustomExport.Size = new System.Drawing.Size(22, 21);
             this.chkCustomExport.TabIndex = 6;
@@ -260,7 +264,7 @@
             // 
             this.chkJSON.AutoSize = true;
             this.chkJSON.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.chkJSON.Location = new System.Drawing.Point(321, 371);
+            this.chkJSON.Location = new System.Drawing.Point(321, 407);
             this.chkJSON.Name = "chkJSON";
             this.chkJSON.Size = new System.Drawing.Size(146, 29);
             this.chkJSON.TabIndex = 7;
@@ -271,7 +275,7 @@
             // 
             this.chkDoNot.AutoSize = true;
             this.chkDoNot.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.chkDoNot.Location = new System.Drawing.Point(321, 336);
+            this.chkDoNot.Location = new System.Drawing.Point(321, 372);
             this.chkDoNot.Name = "chkDoNot";
             this.chkDoNot.Size = new System.Drawing.Size(438, 29);
             this.chkDoNot.TabIndex = 8;
@@ -282,7 +286,7 @@
             // 
             this.chkCleanStartup.AutoSize = true;
             this.chkCleanStartup.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.chkCleanStartup.Location = new System.Drawing.Point(13, 337);
+            this.chkCleanStartup.Location = new System.Drawing.Point(13, 373);
             this.chkCleanStartup.Name = "chkCleanStartup";
             this.chkCleanStartup.Size = new System.Drawing.Size(216, 29);
             this.chkCleanStartup.TabIndex = 9;
@@ -293,12 +297,45 @@
             // 
             this.chkCleanExit.AutoSize = true;
             this.chkCleanExit.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.chkCleanExit.Location = new System.Drawing.Point(13, 372);
+            this.chkCleanExit.Location = new System.Drawing.Point(13, 408);
             this.chkCleanExit.Name = "chkCleanExit";
             this.chkCleanExit.Size = new System.Drawing.Size(189, 29);
             this.chkCleanExit.TabIndex = 10;
             this.chkCleanExit.Text = "Clean files on Exit";
             this.chkCleanExit.UseVisualStyleBackColor = true;
+            // 
+            // btnRekordbox
+            // 
+            this.btnRekordbox.Location = new System.Drawing.Point(1152, 12);
+            this.btnRekordbox.Name = "btnRekordbox";
+            this.btnRekordbox.Size = new System.Drawing.Size(55, 34);
+            this.btnRekordbox.TabIndex = 3;
+            this.btnRekordbox.Text = "...";
+            this.ttipOptions.SetToolTip(this.btnRekordbox, "Select the Rekordbox 6 executable file");
+            this.btnRekordbox.UseVisualStyleBackColor = true;
+            this.btnRekordbox.Click += new System.EventHandler(this.btnRekordbox_Click);
+            // 
+            // txtRekordbox
+            // 
+            this.txtRekordbox.Location = new System.Drawing.Point(218, 12);
+            this.txtRekordbox.Name = "txtRekordbox";
+            this.txtRekordbox.Size = new System.Drawing.Size(928, 31);
+            this.txtRekordbox.TabIndex = 2;
+            this.ttipOptions.SetToolTip(this.txtRekordbox, "Choose the location of the Rekordbox 6 executable file");
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label8.Location = new System.Drawing.Point(13, 12);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(155, 25);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "Rekordbox 6 Exe";
+            // 
+            // fileRekordboxExe
+            // 
+            this.fileRekordboxExe.Filter = "rekordbox.exe|rekordbox.exe";
             // 
             // OptionsForm
             // 
@@ -307,6 +344,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(1220, 520);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.txtRekordbox);
+            this.Controls.Add(this.btnRekordbox);
             this.Controls.Add(this.chkCleanExit);
             this.Controls.Add(this.chkCleanStartup);
             this.Controls.Add(this.chkDoNot);
@@ -372,5 +412,9 @@
         private System.Windows.Forms.CheckBox chkCleanStartup;
         private System.Windows.Forms.CheckBox chkCleanExit;
         private System.Windows.Forms.ToolTip ttipOptions;
+        private System.Windows.Forms.Button btnRekordbox;
+        private System.Windows.Forms.TextBox txtRekordbox;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.OpenFileDialog fileRekordboxExe;
     }
 }

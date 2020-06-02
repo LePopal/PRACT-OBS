@@ -1,5 +1,7 @@
-﻿using PRACT.Rekordbox6.Classes.Data;
+﻿using PRACT.Common.IO;
+using PRACT.Rekordbox6.Classes.Data;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -44,15 +46,9 @@ namespace PRACT.Rekordbox6.Classes.Helpers
         /// <summary>
         /// This folder is deduced from the lang settings
         /// The binaries folder is the parent folder of the file containing the language settings
+        /// This value must be loaded at startup
         /// </summary>
-        public static string RekordboxBinariesFolder
-        {
-            get
-            {
-                FileInfo fi = new FileInfo(Rb6Options.options.LangPath);
-                return fi.Directory.Parent.FullName;
-            }
-        }
+        public static string RekordboxBinariesFolder { get; set; }
 
         public static string AppAsarFilePath
         {

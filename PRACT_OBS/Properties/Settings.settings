@@ -5,9 +5,6 @@
     <Setting Name="Key" Type="System.String" Scope="User">
       <Value Profile="(Default)">PASSPHRASE_TO_MINE</Value>
     </Setting>
-    <Setting Name="Sboub" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="OutputFolder" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
@@ -46,6 +43,9 @@
     </Setting>
     <Setting Name="DoNotExportPastTracks" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Rekordbox6Exe" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>
