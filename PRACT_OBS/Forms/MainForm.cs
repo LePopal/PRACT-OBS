@@ -38,7 +38,7 @@ namespace PRACT_OBS
             this.ttipMainform.SetToolTip(this.btnPush, "Force the export of the current track data");
             this.ttipMainform.SetToolTip(this.btnStart, "Start the track history monitoring");
             this.ttipMainform.SetToolTip(this.btnStop, "Stop the track history monitoring");
-            this.ttipMainform.SetToolTip(this.chkContinuousExport, "Contiously export data");
+            this.ttipMainform.SetToolTip(this.radContinuousExport, "Contiously export data");
             this.ttipMainform.SetToolTip(this.txtArtist, "Current artist");
             this.ttipMainform.SetToolTip(this.txtTitle, "Current track title");
             this.ttipMainform.SetToolTip(this.txtLastExport, "Last time track data has been exported");
@@ -60,11 +60,20 @@ namespace PRACT_OBS
         {
             while (!IsDisposed && !stopExport)
             {
-                lt = h.GetLastTrack();
+                // If normal mode (= not edit mode), the file is read from Rekordbox
+                // otherwise we export what's written in the text boxes
+                if(!radEditMode.Checked)
+                    lt = h.GetLastTrack();
+                else
+                {
+                    lt = new LastTrack();
+                    lt.Artist = txtArtist.Text;
+                    lt.Title = txtTitle.Text;
+                }
                 localHistory.Add(lt);
                 if (lt != null)
                 {
-                    if(chkContinuousExport.Checked)
+                    if(radContinuousExport.Checked)
                         OBSExport.ExportLastTrack(lt);
                     txtArtist.Invoke((Action)delegate
                     {
@@ -116,8 +125,18 @@ namespace PRACT_OBS
 
         private void OneTimeExport()
         {
+            LastTrack lt;
             OBSExport.Clean();
-            OBSExport.ExportLastTrack(h.GetLastTrack());
+            
+            if (!radEditMode.Checked)
+                lt = h.GetLastTrack();
+            else
+            {
+                lt = new LastTrack();
+                lt.Artist = txtArtist.Text;
+                lt.Title = txtTitle.Text;
+            }
+            OBSExport.ExportLastTrack(lt);
         }
         private void button2_Click(object sender, EventArgs e)
         {
@@ -226,7 +245,7 @@ namespace PRACT_OBS
                     else
                         break;
                 case Keys.F9:
-                    if (!chkContinuousExport.Checked)
+                    if (!radContinuousExport.Checked)
                     {
                         OneTimeExport();
                         return true;
@@ -272,7 +291,7 @@ namespace PRACT_OBS
 
         private void chkContinuousExport_CheckedChanged(object sender, EventArgs e)
         {
-            btnPush.Enabled = !((CheckBox)sender).Checked;
+            
         }
 
         private void btnPush_Click(object sender, EventArgs e)
@@ -284,5 +303,36 @@ namespace PRACT_OBS
         {
             OBSExport.Clean();
         }
+
+        private void chkEdit_CheckedChanged(object sender, EventArgs e)
+        {
+
+
+        }
+
+        private void radEditMode_CheckedChanged(object sender, EventArgs e)
+        {
+            ToggleEditMode();
+        }
+
+        private void radContinuousExport_CheckedChanged(object sender, EventArgs e)
+        {
+            ToggleEditMode();
+        }
+
+        private void ToggleEditMode()
+        {
+            txtArtist.ReadOnly = !radEditMode.Checked;
+            txtTitle.ReadOnly = !radEditMode.Checked;
+            if (radEditMode.Checked)
+            {
+                if (!string.IsNullOrEmpty(ProgramSettings.DefaultArtwork))
+                    picArtwork.Image = Image.FromFile(ProgramSettings.DefaultArtwork);
+                else
+                    picArtwork.Image = null;
+            }
+            btnPush.Enabled = radEditMode.Checked;
+        }
+
     }
 }

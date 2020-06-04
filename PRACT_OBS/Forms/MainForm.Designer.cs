@@ -76,8 +76,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.picArtwork = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radContinuousExport = new System.Windows.Forms.RadioButton();
+            this.radEditMode = new System.Windows.Forms.RadioButton();
             this.btnPush = new System.Windows.Forms.Button();
-            this.chkContinuousExport = new System.Windows.Forms.CheckBox();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ttipMainform = new System.Windows.Forms.ToolTip(this.components);
             this.menuStrip1.SuspendLayout();
@@ -86,6 +88,7 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picArtwork)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnStart
@@ -95,7 +98,7 @@
             this.btnStart.Location = new System.Drawing.Point(12, 3);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(160, 55);
-            this.btnStart.TabIndex = 1;
+            this.btnStart.TabIndex = 6;
             this.btnStart.Text = "Start (F5)";
             this.btnStart.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnStart.UseVisualStyleBackColor = true;
@@ -379,7 +382,7 @@
             this.btnStop.Location = new System.Drawing.Point(178, 5);
             this.btnStop.Name = "btnStop";
             this.btnStop.Size = new System.Drawing.Size(157, 55);
-            this.btnStop.TabIndex = 3;
+            this.btnStop.TabIndex = 7;
             this.btnStop.Text = "Pause (F8)";
             this.btnStop.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnStop.UseVisualStyleBackColor = true;
@@ -408,8 +411,8 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
             this.splitContainer1.Panel2.Controls.Add(this.btnPush);
-            this.splitContainer1.Panel2.Controls.Add(this.chkContinuousExport);
             this.splitContainer1.Panel2.Controls.Add(this.btnStart);
             this.splitContainer1.Panel2.Controls.Add(this.btnStop);
             this.splitContainer1.Size = new System.Drawing.Size(803, 384);
@@ -441,7 +444,7 @@
             this.txtLastExport.Name = "txtLastExport";
             this.txtLastExport.ReadOnly = true;
             this.txtLastExport.Size = new System.Drawing.Size(362, 31);
-            this.txtLastExport.TabIndex = 4;
+            this.txtLastExport.TabIndex = 5;
             // 
             // lblLastExport
             // 
@@ -468,7 +471,7 @@
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.ReadOnly = true;
             this.txtTitle.Size = new System.Drawing.Size(362, 31);
-            this.txtTitle.TabIndex = 2;
+            this.txtTitle.TabIndex = 1;
             // 
             // txtArtist
             // 
@@ -476,7 +479,7 @@
             this.txtArtist.Name = "txtArtist";
             this.txtArtist.ReadOnly = true;
             this.txtArtist.Size = new System.Drawing.Size(362, 31);
-            this.txtArtist.TabIndex = 2;
+            this.txtArtist.TabIndex = 0;
             // 
             // label3
             // 
@@ -517,30 +520,51 @@
             this.picArtwork.TabIndex = 0;
             this.picArtwork.TabStop = false;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radContinuousExport);
+            this.groupBox1.Controls.Add(this.radEditMode);
+            this.groupBox1.Location = new System.Drawing.Point(503, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(300, 57);
+            this.groupBox1.TabIndex = 7;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Mode";
+            // 
+            // radContinuousExport
+            // 
+            this.radContinuousExport.AutoSize = true;
+            this.radContinuousExport.Checked = true;
+            this.radContinuousExport.Location = new System.Drawing.Point(113, 2);
+            this.radContinuousExport.Name = "radContinuousExport";
+            this.radContinuousExport.Size = new System.Drawing.Size(184, 29);
+            this.radContinuousExport.TabIndex = 9;
+            this.radContinuousExport.TabStop = true;
+            this.radContinuousExport.Text = "Continuous Export";
+            this.radContinuousExport.UseVisualStyleBackColor = true;
+            this.radContinuousExport.CheckedChanged += new System.EventHandler(this.radContinuousExport_CheckedChanged);
+            // 
+            // radEditMode
+            // 
+            this.radEditMode.AutoSize = true;
+            this.radEditMode.Location = new System.Drawing.Point(113, 30);
+            this.radEditMode.Name = "radEditMode";
+            this.radEditMode.Size = new System.Drawing.Size(119, 29);
+            this.radEditMode.TabIndex = 10;
+            this.radEditMode.Text = "Edit mode";
+            this.radEditMode.UseVisualStyleBackColor = true;
+            this.radEditMode.CheckedChanged += new System.EventHandler(this.radEditMode_CheckedChanged);
+            // 
             // btnPush
             // 
             this.btnPush.Enabled = false;
             this.btnPush.Location = new System.Drawing.Point(341, 5);
             this.btnPush.Name = "btnPush";
             this.btnPush.Size = new System.Drawing.Size(157, 55);
-            this.btnPush.TabIndex = 6;
+            this.btnPush.TabIndex = 8;
             this.btnPush.Text = "Push (F9)";
             this.btnPush.UseVisualStyleBackColor = true;
             this.btnPush.Click += new System.EventHandler(this.btnPush_Click);
-            // 
-            // chkContinuousExport
-            // 
-            this.chkContinuousExport.AutoSize = true;
-            this.chkContinuousExport.Checked = true;
-            this.chkContinuousExport.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkContinuousExport.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.chkContinuousExport.Location = new System.Drawing.Point(621, 3);
-            this.chkContinuousExport.Name = "chkContinuousExport";
-            this.chkContinuousExport.Size = new System.Drawing.Size(185, 29);
-            this.chkContinuousExport.TabIndex = 5;
-            this.chkContinuousExport.Text = "Continuous Export";
-            this.chkContinuousExport.UseVisualStyleBackColor = true;
-            this.chkContinuousExport.CheckedChanged += new System.EventHandler(this.chkContinuousExport_CheckedChanged);
             // 
             // toolStripMenuItem1
             // 
@@ -565,10 +589,11 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picArtwork)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -621,10 +646,12 @@
         private System.Windows.Forms.Label lblLastExport;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.CheckBox chkContinuousExport;
         private System.Windows.Forms.Button btnPush;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
         private System.Windows.Forms.ToolTip ttipMainform;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radContinuousExport;
+        private System.Windows.Forms.RadioButton radEditMode;
     }
 }
 
