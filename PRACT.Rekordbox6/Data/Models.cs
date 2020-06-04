@@ -16,7 +16,7 @@ namespace PRACT.Rekordbox6.Classes.Data
         public string Title { get; set; }
         public string Artist { get; set; }
         public string ImagePath { get; set; }
-        public int BPM { get; set; }
+        public string BPM { get; set; }
         public int Rating { get; set; }
         public int? ReleaseYear { get; set; }
         public string ReleaseDate { get; set; }

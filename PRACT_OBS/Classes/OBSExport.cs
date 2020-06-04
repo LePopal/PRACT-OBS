@@ -231,7 +231,7 @@ namespace PRACT_OBS.Classes
                             .Replace(TOKEN_ARTIST, lastTrack.Artist, StringComparison.InvariantCultureIgnoreCase)
                             .Replace(TOKEN_TITLE, lastTrack.Title, StringComparison.InvariantCultureIgnoreCase)
                             .Replace(TOKEN_IMAGE_PATH, lastTrack.ImagePath, StringComparison.InvariantCultureIgnoreCase)
-                            .Replace(TOKEN_BPM, lastTrack.BPM.ToString(), StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_BPM, lastTrack.BPM, StringComparison.InvariantCultureIgnoreCase)
                             .Replace(TOKEN_RATING, lastTrack.Rating.ToString(), StringComparison.InvariantCultureIgnoreCase)
                             .Replace(TOKEN_RELEASE_YEAR, lastTrack.ReleaseYear.ToString(), StringComparison.InvariantCultureIgnoreCase)
                             .Replace(TOKEN_LENGTH, lastTrack.Length.ToString(), StringComparison.InvariantCultureIgnoreCase)

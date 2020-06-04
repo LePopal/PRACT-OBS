@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -44,7 +45,9 @@ namespace PRACT_OBS.Classes.Helpers
                         lt.Artist = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
                         i++;
                         lt.ImagePath = edr.GetString(i++).Replace('/','\\');
-                        lt.BPM = (edr.IsDBNull(i) ? 0 : edr.GetInt32(i));
+                        lt.BPM = (
+                                    (double)((edr.IsDBNull(i) ? 0 : edr.GetInt32(i)))
+                                    /100).ToString("{0:0.00}", CultureInfo.InvariantCulture);
                         i++;
                         lt.Rating = (edr.IsDBNull(i) ? 0 : edr.GetInt32(i));
                         i++;
