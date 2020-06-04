@@ -55,7 +55,7 @@ namespace PRACT_OBS.Classes.Helpers
                         i++;
                         lt.ReleaseDate= (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
                         i++;
-                        lt.Length = edr.GetInt32(i++);
+                        lt.Length = TimeSpan.FromSeconds(edr.GetInt32(i++)).ToString(@"hh\:mm\:ss\:fff", CultureInfo.InvariantCulture);
                         lt.ColorID = (edr.IsDBNull(i) ? (int?)null : edr.GetInt32(i));
                         i++;
                         lt.TrackComment = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));

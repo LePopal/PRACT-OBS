@@ -6,6 +6,7 @@ using System.Text.Json;
 using PRACT.Rekordbox6.Classes.Data;
 using PRACT.Rekordbox6.Classes.Helpers;
 using PRACT_OBS.Classes.Helpers;
+using System.Globalization;
 
 namespace PRACT_OBS.Classes
 {
@@ -232,9 +233,9 @@ namespace PRACT_OBS.Classes
                             .Replace(TOKEN_TITLE, lastTrack.Title, StringComparison.InvariantCultureIgnoreCase)
                             .Replace(TOKEN_IMAGE_PATH, lastTrack.ImagePath, StringComparison.InvariantCultureIgnoreCase)
                             .Replace(TOKEN_BPM, lastTrack.BPM, StringComparison.InvariantCultureIgnoreCase)
-                            .Replace(TOKEN_RATING, lastTrack.Rating.ToString(), StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_RATING, lastTrack.Rating.ToString(CultureInfo.InvariantCulture), StringComparison.InvariantCultureIgnoreCase)
                             .Replace(TOKEN_RELEASE_YEAR, lastTrack.ReleaseYear.ToString(), StringComparison.InvariantCultureIgnoreCase)
-                            .Replace(TOKEN_LENGTH, lastTrack.Length.ToString(), StringComparison.InvariantCultureIgnoreCase)
+                            .Replace(TOKEN_LENGTH, lastTrack.Length, StringComparison.InvariantCultureIgnoreCase)
                             .Replace(TOKEN_COLOR_ID, lastTrack.ColorID.ToString(), StringComparison.InvariantCultureIgnoreCase)
                             .Replace(TOKEN_COLOR_NAME, lastTrack.ColorName, StringComparison.InvariantCultureIgnoreCase)
                             .Replace(TOKEN_COMMENT, lastTrack.TrackComment, StringComparison.InvariantCultureIgnoreCase)

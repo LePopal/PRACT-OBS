@@ -20,7 +20,7 @@ namespace PRACT.Rekordbox6.Classes.Data
         public int Rating { get; set; }
         public int? ReleaseYear { get; set; }
         public string ReleaseDate { get; set; }
-        public int Length { get; set; }
+        public string Length { get; set; }
         public int? ColorID { get; set; }
         public string TrackComment { get; set; }
         public string ColorName { get; set; }
