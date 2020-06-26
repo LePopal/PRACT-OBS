@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.Sqlite;
 using PRACT.Rekordbox6.Classes.Data;
+using PRACT.Rekordbox6.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -37,43 +38,32 @@ namespace PRACT_OBS.Classes.Helpers
                     {
                         int i = 0;
                         LastTrack lt = new LastTrack();
-                        lt.ID = edr.GetString(i++);
+                        lt.ID = DBNullHelper.SafeGetString(edr, i++);
                         lt.created_at = edr.GetDateTime(i++);
-                        lt.FolderPath = edr.GetString(i++).Replace('/', '\\');
-                        lt.Title = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
-                        i++;
-                        lt.Artist = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
-                        i++;
+                        lt.FolderPath = DBNullHelper.SafeGetString(edr, i++).Replace('/', '\\');
+                        lt.Title = DBNullHelper.SafeGetString(edr, i++);
+                        lt.Artist = DBNullHelper.SafeGetString(edr, i++);
                         lt.ImagePath = edr.GetString(i++).Replace('/','\\');
                         lt.BPM = (
-                                    (double)((edr.IsDBNull(i) ? 0 : edr.GetInt32(i)))
-                                    /100).ToString("0.00", CultureInfo.InvariantCulture);
-                        i++;
-                        lt.Rating = (edr.IsDBNull(i) ? 0 : edr.GetInt32(i));
-                        i++;
+                                    (double)(DBNullHelper.SafeGetInt32(edr, i++, 0))
+                                    / 100).ToString("0.00", CultureInfo.InvariantCulture);
+
+                        lt.Rating = DBNullHelper.SafeGetInt32(edr, i++, 0);
                         lt.ReleaseYear = (edr.IsDBNull(i) ? (int?)null : edr.GetInt32(i));
                         i++;
-                        lt.ReleaseDate= (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
-                        i++;
+                        lt.ReleaseDate= DBNullHelper.SafeGetString(edr, i++);
                         lt.Length = TimeSpan.FromSeconds(edr.GetInt32(i++)).ToString(@"mm\:ss", CultureInfo.InvariantCulture);
                         lt.ColorID = (edr.IsDBNull(i) ? (int?)null : edr.GetInt32(i));
                         i++;
-                        lt.TrackComment = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
-                        i++;
-                        lt.ColorName = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
-                        i++;
-                        lt.AlbumName = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
-                        i++;
-                        lt.LabelName = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
-                        i++;
-                        lt.GenreName = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
-                        i++;
-                        lt.KeyName = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
-                        i++;
-                        lt.RemixerName = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
-                        i++;
-                        lt.Message = (edr.IsDBNull(i) ? string.Empty : edr.GetString(i));
-                        
+                        lt.TrackComment = DBNullHelper.SafeGetString(edr, i++);
+                        lt.ColorName = DBNullHelper.SafeGetString(edr, i++);
+                        lt.AlbumName = DBNullHelper.SafeGetString(edr, i++);
+                        lt.LabelName = DBNullHelper.SafeGetString(edr, i++);
+                        lt.GenreName = DBNullHelper.SafeGetString(edr, i++);
+                        lt.KeyName = DBNullHelper.SafeGetString(edr, i++);
+                        lt.RemixerName = DBNullHelper.SafeGetString(edr, i++);
+                        lt.Message = DBNullHelper.SafeGetString(edr, i++);
+
                         lastTracks.Add(lt);
                     }
                 }
