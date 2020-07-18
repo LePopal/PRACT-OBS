@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
   <?define PRACT_OBS_TargetDir=$(var.PRACT_OBS.TargetDir)?>
-  <Product Id="{A6F8EE56-9FBC-4E8E-90A3-5F47674EF3B0}" Name="PRACT OBS" Language="1033" Version="0.6.3.0" Manufacturer="Popal" UpgradeCode="24103ad6-a6fd-44ae-bea1-71776ec722db">
+  <Product Id="{A6F8EE56-9FBC-4E8E-90A3-5F47674EF3B0}" Name="PRACT OBS" Language="1033" Version="0.6.4.0" Manufacturer="Popal" UpgradeCode="24103ad6-a6fd-44ae-bea1-71776ec722db">
     <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" Description="PRACT OBS: Export Rekordbox v6 played tracks to OBS" />
 
     <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />

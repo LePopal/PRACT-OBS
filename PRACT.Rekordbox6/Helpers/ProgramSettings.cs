@@ -22,7 +22,7 @@ namespace PRACT.Rekordbox6.Helpers
                         .Replace("\n", string.Empty)
                         .Replace("\r", string.Empty); ;
 
-            string pattern = "pass:\"(.*?)\"}";
+            string pattern = "pass:\"(.*?)\",?}";
 
             MatchCollection matches = Regex.Matches(appAsarContent, pattern);
             List<string> l = new List<string>();
