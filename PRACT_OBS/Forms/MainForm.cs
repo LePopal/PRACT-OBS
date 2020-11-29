@@ -49,11 +49,16 @@ namespace PRACT_OBS
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            StartExport();
-            while (exportThread.IsAlive)
+            if (ProgramSettings.IsRekordbox6Configured)
             {
-                Application.DoEvents();
+                StartExport();
+                while (exportThread.IsAlive)
+                {
+                    Application.DoEvents();
+                }
             }
+            else
+                Messages.WarningMessage("The Rekordbox 6 executable could not be found. Be sure to configure it in the Options menu before proceeding : Tools / Options.");
         }
 
         private void ContinuousExport()
