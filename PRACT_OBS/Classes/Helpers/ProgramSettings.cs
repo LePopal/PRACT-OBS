@@ -241,7 +241,7 @@ namespace PRACT_OBS.Classes.Helpers
         {
             get
             {
-                return string.IsNullOrWhiteSpace(Rekordbox6Executable)
+                return !string.IsNullOrWhiteSpace(Rekordbox6Executable)
                 || File.Exists(Rekordbox6Executable);
             }
         }
