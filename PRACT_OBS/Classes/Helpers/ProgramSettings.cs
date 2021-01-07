@@ -237,6 +237,15 @@ namespace PRACT_OBS.Classes.Helpers
             }
         }
 
+        public static bool IsRekordbox6Configured
+        {
+            get
+            {
+                return string.IsNullOrWhiteSpace(Rekordbox6Executable)
+                || File.Exists(Rekordbox6Executable);
+            }
+        }
+
         private static Settings settings
         {
             get
