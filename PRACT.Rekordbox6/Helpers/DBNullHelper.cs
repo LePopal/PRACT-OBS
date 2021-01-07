@@ -14,7 +14,7 @@ namespace PRACT.Rekordbox6.Helpers
 
         public static Int32 SafeGetInt32(DbDataReader dr, int ord)
         {
-            return SafeGetInt32(dr, ord, int.MinValue);
+            return SafeGetInt32(dr, ord, 0);
         }
         public static Int32 SafeGetInt32(DbDataReader dr, int ord, int defaultValue)
         {

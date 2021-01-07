@@ -43,18 +43,16 @@ namespace PRACT_OBS.Classes.Helpers
                         lt.FolderPath = DBNullHelper.SafeGetString(edr, i++).Replace('/', '\\');
                         lt.Title = DBNullHelper.SafeGetString(edr, i++);
                         lt.Artist = DBNullHelper.SafeGetString(edr, i++);
-                        lt.ImagePath = edr.GetString(i++).Replace('/','\\');
+                        lt.ImagePath = DBNullHelper.SafeGetString(edr, i++).Replace('/','\\');
                         lt.BPM = (
                                     (double)(DBNullHelper.SafeGetInt32(edr, i++, 0))
                                     / 100).ToString("0.00", CultureInfo.InvariantCulture);
 
                         lt.Rating = DBNullHelper.SafeGetInt32(edr, i++, 0);
-                        lt.ReleaseYear = (edr.IsDBNull(i) ? (int?)null : edr.GetInt32(i));
-                        i++;
+                        lt.ReleaseYear = DBNullHelper.SafeGetInt32(edr, i++, 0);
                         lt.ReleaseDate= DBNullHelper.SafeGetString(edr, i++);
                         lt.Length = TimeSpan.FromSeconds(edr.GetInt32(i++)).ToString(@"mm\:ss", CultureInfo.InvariantCulture);
-                        lt.ColorID = (edr.IsDBNull(i) ? (int?)null : edr.GetInt32(i));
-                        i++;
+                        lt.ColorID = DBNullHelper.SafeGetInt32(edr, i++, 0);
                         lt.TrackComment = DBNullHelper.SafeGetString(edr, i++);
                         lt.ColorName = DBNullHelper.SafeGetString(edr, i++);
                         lt.AlbumName = DBNullHelper.SafeGetString(edr, i++);
