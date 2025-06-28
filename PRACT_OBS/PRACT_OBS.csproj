@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net8.0-windows7.0</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <UserSecretsId>b70c8c37-ba6c-4c95-a2a3-be8eaae79d96</UserSecretsId>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>

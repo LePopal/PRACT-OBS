@@ -32,10 +32,10 @@
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.labelProductName = new System.Windows.Forms.Label();
             this.labelVersion = new System.Windows.Forms.Label();
-            this.labelCopyright = new System.Windows.Forms.Label();
             this.labelCompanyName = new System.Windows.Forms.Label();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
             this.okButton = new System.Windows.Forms.Button();
+            this.linkWWW = new System.Windows.Forms.LinkLabel();
             this.tableLayoutPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.SuspendLayout();
@@ -48,10 +48,10 @@
             this.tableLayoutPanel.Controls.Add(this.logoPictureBox, 0, 0);
             this.tableLayoutPanel.Controls.Add(this.labelProductName, 1, 0);
             this.tableLayoutPanel.Controls.Add(this.labelVersion, 1, 1);
-            this.tableLayoutPanel.Controls.Add(this.labelCopyright, 1, 2);
             this.tableLayoutPanel.Controls.Add(this.labelCompanyName, 1, 3);
             this.tableLayoutPanel.Controls.Add(this.textBoxDescription, 1, 4);
             this.tableLayoutPanel.Controls.Add(this.okButton, 1, 5);
+            this.tableLayoutPanel.Controls.Add(this.linkWWW, 1, 2);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(15, 17);
             this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
@@ -103,18 +103,6 @@
             this.labelVersion.Text = "Version";
             this.labelVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // labelCopyright
-            // 
-            this.labelCopyright.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.labelCopyright.Location = new System.Drawing.Point(239, 102);
-            this.labelCopyright.Margin = new System.Windows.Forms.Padding(10, 0, 5, 0);
-            this.labelCopyright.MaximumSize = new System.Drawing.Size(0, 33);
-            this.labelCopyright.Name = "labelCopyright";
-            this.labelCopyright.Size = new System.Drawing.Size(451, 33);
-            this.labelCopyright.TabIndex = 21;
-            this.labelCopyright.Text = "Copyright";
-            this.labelCopyright.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
             // labelCompanyName
             // 
             this.labelCompanyName.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -152,6 +140,16 @@
             this.okButton.TabIndex = 24;
             this.okButton.Text = "&OK";
             // 
+            // linkWWW
+            // 
+            this.linkWWW.AutoSize = true;
+            this.linkWWW.Location = new System.Drawing.Point(232, 102);
+            this.linkWWW.Name = "linkWWW";
+            this.linkWWW.Size = new System.Drawing.Size(90, 25);
+            this.linkWWW.TabIndex = 25;
+            this.linkWWW.TabStop = true;
+            this.linkWWW.Text = "linkLabel1";
+            // 
             // AboutBox
             // 
             this.AcceptButton = this.okButton;
@@ -182,9 +180,9 @@
         private System.Windows.Forms.PictureBox logoPictureBox;
         private System.Windows.Forms.Label labelProductName;
         private System.Windows.Forms.Label labelVersion;
-        private System.Windows.Forms.Label labelCopyright;
         private System.Windows.Forms.Label labelCompanyName;
         private System.Windows.Forms.TextBox textBoxDescription;
         private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.LinkLabel linkWWW;
     }
 }
